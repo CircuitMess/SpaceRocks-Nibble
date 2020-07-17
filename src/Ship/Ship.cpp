@@ -7,8 +7,8 @@ constexpr float Ship::headingTable[24][2];
 Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) : game(game), input(_input), canvas(canvas)
 {
 	heading = 0;
-	shipX = 65;
-	shipY = 10;
+	shipX = 0;
+	shipY = 0;
 	velocityX = 0;
 	velocityY = 0;
 	invincibility = 0;
@@ -20,6 +20,10 @@ Ship::~Ship()
 }
 void Ship::update(uint _time)
 {
+	input->update(_time, *this);
+	bullets.update(canvas);
+
+	//invincibility handling
 	if(invincibility){
 		invincibility_time+=_time;
 		if(invincibility_time >= invincibility_duration){
@@ -27,16 +31,39 @@ void Ship::update(uint _time)
 			invincibility_time = 0;
 		}
 	}
-	input->update(_time, *this);
 
+	//rotation handling
 	if (heading > 23){
 		heading -= 24;
 	}
 	if (heading < 0){
 		heading += 24;
 	}
+
+	//velocity limiting and handling
+
+	//stopping gradually
+	if (velocityY > 0)velocityY -= 0.01;
+	if (velocityY < 0)velocityY += 0.01;
+
+	if (velocityX > 0)velocityX -= 0.01;
+	if (velocityX < 0)velocityX += 0.01;
+
+	//stop completely if going slow enough
+	if (velocityX <= 0.01 && velocityX >= -0.01) velocityX = 0;
+	if (velocityY <= 0.01 && velocityY >= -0.01) velocityY = 0;
+
+	//max speed reached?
+	if (velocityY > 2)velocityY = 2;
+	if (velocityY < -2)velocityY = -2;
+
+	if (velocityX > 2)velocityX = 2;
+	if (velocityX < -2)velocityX = -2;
+
 	shipX += velocityX;
 	shipY += velocityY;
+
+	//out-of-bounds handling
 	if (shipX < 5){
 		shipX = canvas->width() - 5;
 	}
@@ -49,7 +76,6 @@ void Ship::update(uint _time)
 	if (shipY > canvas->height() - 4){
 		shipY = 4;
 	}
-	bullets.update(canvas);
 }
 void Ship::draw()
 {

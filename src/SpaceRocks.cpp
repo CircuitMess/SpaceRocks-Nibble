@@ -1,6 +1,7 @@
 #include "SpaceRocks.h"
 #include "bitmaps/icon.hpp"
 #include "TitleState.h"
+#include "GameState.h"
 
 GameInfo Game::info = {"SpaceRocks", "Shoot the asteroids and survive!", icon};
 
@@ -31,25 +32,15 @@ void SpaceRocks::stop()
 }
 void SpaceRocks::newGame()
 {
-	// life = 3;
-	// resetSim();
-	// resetField();
-	// // addOscillator(shoot);
-	// addTrack(collide);
-	// // addTrack(hit);
-	// simState = ProgState::Simulation;
-	// titleMusic->stop();
-	// removeTrack(titleMusic);
-	// addTrack(bgmusic);
-	// if(mp.mediaVolume == 0)
-	// 	bgmusic->setVolume(0);
-	// else
-	// 	bgmusic->setVolume(map(mp.mediaVolume, 0, 14, 100, 300));
-	// bgmusic->setRepeat(1);
-	// bgmusic->rewind();
-	// bgmusic->play();
+	delete state;
+	state = new GameState(canvas);
+	state->start(*this);
 }
 void SpaceRocks::openHighscores()
+{
+
+}
+void SpaceRocks::pauseGame()
 {
 
 }
