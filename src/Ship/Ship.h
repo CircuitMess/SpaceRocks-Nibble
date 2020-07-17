@@ -2,7 +2,7 @@
 #define SPACEROCKS_SHIP_H
 #include <Display/Sprite.h>
 #include "InputComponent.h"
-#include "../../ByteBoy.hpp"
+#include "../State.hpp"
 
 #define shipX0  shipX + (int8_t)(pgm_read_byte(&shipTbl[0][heading]))
 #define shipY0  shipY + (int8_t)(pgm_read_byte(&shipTbl[1][heading]))
@@ -14,7 +14,7 @@
 class Ship
 {
 public:
-	Ship(Game *game, InputComponent *input, Sprite *canvas);
+	Ship(State *game, InputComponent *input, Sprite *canvas);
 	~Ship();
 	void update(uint _time);
 	void draw();
@@ -29,7 +29,7 @@ private:
 	InputComponent* input;
 	Sprite* canvas;
 	static constexpr uint16_t invincibility_duration = 2000000;
-	Game* game;
+	State* game;
 	static constexpr int8_t shipTbl[6][24] PROGMEM = {
 		//HDG
 		//  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23

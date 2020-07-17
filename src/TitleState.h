@@ -7,13 +7,18 @@
 class TitleState : public State
 {
 public:
-	TitleState();
+	TitleState(Sprite* sprite);
 	~TitleState();
-	void update(uint _time) override;
+	void update(uint _time, SpaceRocks& game) override;
 	void draw() override;
-	
+	void start(SpaceRocks& game) override;
 private:
+	static const char *titleMenu[3] PROGMEM;
 	Ship* ship;
+	uint8_t titleCursor;
+	bool blinkState;
+	uint blinkMicros;
+	static TitleState* instance;
 };
 
 

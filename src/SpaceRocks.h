@@ -19,8 +19,11 @@ public:
 	SpaceRocks(Display& Display);
 	void draw() override;
 	void start() override;
-	void update(uint) override;
+	void update(uint _time) override;
 	void stop() override;
+
+	void newGame();
+	void openHighscores();
 private:
 	State *state;
 	Display *display;

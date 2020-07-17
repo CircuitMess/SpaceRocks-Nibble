@@ -1,7 +1,7 @@
 #include "Ship.h"
 constexpr int8_t Ship::shipTbl[6][24];
 constexpr uint16_t Ship::invincibility_duration;
-Ship::Ship(Game *game, InputComponent *_input, Sprite *canvas) : game(game), input(_input), canvas(canvas)
+Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) : game(game), input(_input), canvas(canvas)
 {
 	heading = 0;
 	shipX = 65;
@@ -25,14 +25,17 @@ void Ship::update(uint _time)
 		}
 	}
 	input->update(_time, *this);
+
 	if (heading > 23){
 		heading -= 24;
 	}
 	if (heading < 0){
 		heading += 24;
 	}
-	shipX = shipX + velocityX;
-	shipY = shipY + velocityY;
+	shipX += velocityX;
+	shipY += velocityY;
+	Serial.println("ship update");
+	delay(2);
 	if (shipX < 5){
 		shipX = canvas->width() - 5;
 	}
@@ -45,6 +48,8 @@ void Ship::update(uint _time)
 	if (shipY > canvas->height() - 4){
 		shipY = 4;
 	}
+	Serial.println("ship update");
+	delay(2);
 }
 void Ship::draw()
 {

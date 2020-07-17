@@ -8,6 +8,7 @@ void DemoInputComponent::update(uint _time, Ship& ship)
 {
 	rotateTimer+=_time;
 	if(rotateTimer >= 300000){
+		rotateTimer = 0;
 		bool turn = (random(0, 2) == 1);
 		if (turn){
 			ship.heading++;

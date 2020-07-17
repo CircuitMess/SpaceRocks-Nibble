@@ -26,8 +26,8 @@ void setup() {
 	Serial.println("display ok");
 	Serial.println("buttons begin");
 	SPIFFS.begin();
-	Serial.println("spiffs begin");
 	UpdateManager::addListener(&buttons);
+	Serial.println("spiffs begin");
 	
 	game.unpack();
 	game.start();

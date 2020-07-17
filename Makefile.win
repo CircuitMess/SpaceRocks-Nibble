@@ -1,6 +1,6 @@
 NAME = SpaceRocks
 DIR = .
-PORT = COM14
+PORT = COM6
 
 ACLI = C:\Program Files (x86)\GnuWin32\bin\arduino-cli.exe
 
