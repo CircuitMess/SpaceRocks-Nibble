@@ -22,6 +22,9 @@ TitleState::TitleState(Sprite* sprite) : State(sprite)
 
 TitleState::~TitleState()
 {
+	Input::getInstance()->removeBtnPressCallback(BTN_LEFT);
+	Input::getInstance()->removeBtnPressCallback(BTN_RIGHT);
+	Input::getInstance()->removeBtnPressCallback(BTN_A);
 	delete ship;
 }
 
@@ -56,23 +59,6 @@ void TitleState::start(SpaceRocks& _game)
 }
 void TitleState::update(uint _time, SpaceRocks& game)
 {
-	//begin homescreen
-	
-	// if (millis()-shootMillis >= 150 && (bulletCount < 8)) {
-	// 	shootMillis = millis();
-	// 	bullet[bulletCount][1] = (short)(round)(pgm_read_float(&heading[HDG][0]) * 20);
-	// 	bullet[bulletCount][3] = (short)(round)(pgm_read_float(&heading[HDG][1]) * 20);
-	// 	bullet[bulletCount][0] = shipX1;
-	// 	bullet[bulletCount][2] = shipY1;
-	// 	bullet[bulletCount][4] = 100;
-	// 	bulletCount = bulletCount + 1;
-	// }
-	// if(millis() - blinkMillis > 200)
-	// {
-	// 	blinkMillis = millis();
-	// 	blinkState = !blinkState;
-	// }
-	// trajectory();
 	blinkMicros+=_time;
 	if(blinkMicros > 200000)
 	{
@@ -84,8 +70,8 @@ void TitleState::update(uint _time, SpaceRocks& game)
 void TitleState::draw()
 {
 	display->drawIcon(backdrop, 0,0,128,128);
-	display->drawIcon(title, 5,5,118,60, 1, TFT_WHITE);
 	ship->draw();
+	display->drawIcon(title, 5,5,118,60, 1, TFT_WHITE);
 
 	display->setCursor(118, 110);
 	display->setTextFont(2);

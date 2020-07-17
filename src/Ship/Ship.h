@@ -3,6 +3,7 @@
 #include <Display/Sprite.h>
 #include "InputComponent.h"
 #include "../State.hpp"
+#include "../Bullet/BulletPool.h"
 
 #define shipX0  shipX + (int8_t)(pgm_read_byte(&shipTbl[0][heading]))
 #define shipY0  shipY + (int8_t)(pgm_read_byte(&shipTbl[1][heading]))
@@ -18,6 +19,7 @@ public:
 	~Ship();
 	void update(uint _time);
 	void draw();
+	void shoot();
 	float shipX;
 	float shipY;
 	float velocityX;
@@ -25,6 +27,7 @@ public:
 	int16_t heading;
 	bool invincibility;
 	uint invincibility_time = 0;
+	BulletPool bullets;
 private:
 	InputComponent* input;
 	Sprite* canvas;
@@ -39,6 +42,20 @@ private:
 		{  -4, -4, -3, -3, -3, -2, +0, +2, +3, +3, +3, +4, +4, +4, +3, +3, +3, +2, +0, -2, -3, -3, -3, -4,},
 		{  -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, +3, +3, +3, +3, +3, +3, +3, +3, +3, +3, +3,},
 		{  +3, +2, +1, -1, -2, -3, -3, +3, +2, +1, -1, -2, -3, -2, -1, +1, +2, +3, -3, -3, -2, -1, +1, +2,},
+	};
+	static constexpr float headingTable[24][2] PROGMEM = {
+		{ +0.00, -0.20}, { +0.05, -0.19},
+		{ +0.10, -0.17}, { +0.14, -0.14},
+		{ +0.17, -0.10}, { +0.19, -0.05},
+		{ +0.20, +0.00}, { +0.19, +0.05},
+		{ +0.17, +0.10}, { +0.14, +0.14},
+		{ +0.10, +0.17}, { +0.05, +0.19},
+		{ +0.00, +0.20}, { -0.05, +0.19},
+		{ -0.10, +0.17}, { -0.14, +0.14},
+		{ -0.17, +0.10}, { -0.19, +0.05},
+		{ -0.20, +0.00}, { -0.19, -0.05},
+		{ -0.17, -0.10}, { -0.14, -0.14},
+		{ -0.10, -0.17}, { -0.05, -0.19}
 	};
 };
 

@@ -17,10 +17,7 @@ void SpaceRocks::draw()
 }
 void SpaceRocks::update(uint _time)
 {
-	
 	state->update(_time, *this);
-	Serial.println("SpaceRocks update");
-	delay(2);
 	draw();
 	display->commit();
 }

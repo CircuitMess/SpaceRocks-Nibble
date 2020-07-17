@@ -21,5 +21,8 @@ void PlayerInputComponent::start(Ship& _ship)
 		instance->ship->velocityX += headingTable[instance->ship->heading][0];
 		instance->ship->velocityY += headingTable[instance->ship->heading][1];
 	});
+	Input::getInstance()->setBtnPressCallback(BTN_A, [](){
+		instance->ship->shoot();
+	});
 }
 void PlayerInputComponent::update(uint _time, Ship& ship){}
