@@ -11,9 +11,9 @@ public:
 	void update(Sprite* canvas);
 	void draw(Sprite* canvas);
 	bool inUse();
+	float x, y;
 private:
 	uint framesLeft;
-	float x, y;
 	float xVel, yVel;
 };
 

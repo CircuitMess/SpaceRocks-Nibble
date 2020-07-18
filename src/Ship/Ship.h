@@ -4,6 +4,7 @@
 #include "InputComponent.h"
 #include "../State.hpp"
 #include "../Bullet/BulletPool.h"
+#include "../Asteroid/AsteroidPool.h"
 
 #define shipX0  shipX + (int8_t)(pgm_read_byte(&shipTbl[0][heading]))
 #define shipY0  shipY + (int8_t)(pgm_read_byte(&shipTbl[1][heading]))
@@ -11,6 +12,13 @@
 #define shipY1  shipY + (int8_t)(pgm_read_byte(&shipTbl[3][heading]))
 #define shipX2  shipX + (int8_t)(pgm_read_byte(&shipTbl[4][heading]))
 #define shipY2  shipY + (int8_t)(pgm_read_byte(&shipTbl[5][heading]))
+
+struct ShipCoordinates
+{
+	float x1; float y1;
+	float x2; float y2;
+	float x3; float y3;
+};
 
 class Ship
 {
@@ -20,18 +28,22 @@ public:
 	void update(uint _time);
 	void draw();
 	void shoot();
+	void destroyed();
+	void death();
+	ShipCoordinates getCoordinates();
+
 	float shipX;
 	float shipY;
 	float velocityX;
 	float velocityY;
 	int16_t heading;
 	bool invincibility;
-	uint invincibility_time = 0;
+	uint invincibility_time;
 	BulletPool bullets;
 private:
 	InputComponent* input;
 	Sprite* canvas;
-	static constexpr uint16_t invincibility_duration = 2000000;
+	static constexpr uint invincibility_duration = 2000000;
 	State* game;
 	static constexpr int8_t shipTbl[6][24] PROGMEM = {
 		//HDG

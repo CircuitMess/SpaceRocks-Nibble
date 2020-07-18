@@ -14,6 +14,7 @@ const uint16_t *Asteroid::bitmaps[3][3] = {
 	{pebble1, pebble2, pebble3}
 };
 constexpr uint8_t Asteroid::bitmapSizes[3];
+constexpr uint8_t Asteroid::hitboxWidth[3];
 Asteroid::Asteroid() : type(AsteroidType::destroyed)
 {
 }
@@ -27,17 +28,18 @@ bool Asteroid::inUse()
 	return !(type == AsteroidType::destroyed);
 }
 
-void Asteroid::init(float _x, float _y, float _xVel, float _yVel, AsteroidType _type)
+void Asteroid::init(float _x, float _y, float _xVel, float _yVel, AsteroidType _type, uint8_t _look)
 {
 	x=_x;
 	y=_y;
 	xVel = _xVel;
 	yVel = _yVel;
 	type = _type;
+	look = look;
 }
 void Asteroid::update(Sprite* canvas)
 {
-	if(!inUse() > 0) return;
+	if(!inUse()) return;
 
 	x+=xVel;
 	y+=yVel;
@@ -45,21 +47,29 @@ void Asteroid::update(Sprite* canvas)
 	//out-of-bounds handling
 	uint8_t asteroidWidth = 5 - uint8_t(type);
 
-	if (x < asteroidWidth){
+	if (x < -asteroidWidth){
 		x = canvas->width() - asteroidWidth;
 	}
 	if (x > canvas->width() - asteroidWidth){
-		x = asteroidWidth;
+		x = 0;
 	}
-	if (y < asteroidWidth){
+	if (y < -asteroidWidth){
 		y = canvas->height() - asteroidWidth;
 	}
 	if (y > canvas->height() - asteroidWidth){
-		y = asteroidWidth;
+		y = 0;
 	}
 }
 void Asteroid::draw(Sprite* canvas)
 {
-	if(!inUse() > 0) return;
+	if(!inUse()) return;
 	canvas->drawIcon(bitmaps[uint8_t(type)][look], x, y, bitmapSizes[uint8_t(type)], bitmapSizes[uint8_t(type)], 1, TFT_WHITE);
+
+	//hitbox drawing
+	// canvas->fillRect(x, y, bitmapSizes[uint8_t(type)], bitmapSizes[uint8_t(type)], TFT_RED);
+}
+uint8_t Asteroid::getWidth()
+{
+	if(!inUse()) return 0;
+	return bitmapSizes[uint8_t(type)];
 }

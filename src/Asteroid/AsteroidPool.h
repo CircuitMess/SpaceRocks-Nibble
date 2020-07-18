@@ -1,18 +1,17 @@
-#ifndef SPACEROCKS_BULLETPOOL_H
-#define SPACEROCKS_BULLETPOOL_H
+#ifndef SPACEROCKS_ASTEROIDPOOL_H
+#define SPACEROCKS_ASTEROIDPOOL_H
 #include <Arduino.h>
 #include <Display/Sprite.h>
 #include "Asteroid.h"
 class AsteroidPool
 {
 public:
-	void create(float x, float y, float xVel, float yVel, AsteroidType _type);
+	void create(float x, float y, float xVel, float yVel, AsteroidType _type, uint8_t look);
 	void update(Sprite* canvas);
 	void draw(Sprite* canvas);
-private:
-	static const int POOL_SIZE = 8;
+	void broken(uint8_t index);
+	static const int POOL_SIZE = 80;
 	Asteroid asteroids[POOL_SIZE];
-
 };
 
 

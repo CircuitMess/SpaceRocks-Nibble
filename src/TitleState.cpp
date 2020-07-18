@@ -12,7 +12,6 @@ TitleState::TitleState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 	ship = new Ship(this, new DemoInputComponent(), display);
-	ship->velocityX = 1;
 	ship->shipY = 85;
 	ship->invincibility = 0;
 	titleCursor = 0;
@@ -66,6 +65,7 @@ void TitleState::update(uint _time, SpaceRocks& game)
 		blinkMicros = 0;
 	}
 	ship->update(_time);
+	ship->velocityX = 1;
 }
 void TitleState::draw()
 {

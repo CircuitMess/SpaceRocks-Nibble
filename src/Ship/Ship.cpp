@@ -1,10 +1,11 @@
 #include "Ship.h"
 
 constexpr int8_t Ship::shipTbl[6][24];
-constexpr uint16_t Ship::invincibility_duration;
+constexpr uint Ship::invincibility_duration;
 constexpr float Ship::headingTable[24][2];
 
-Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) : game(game), input(_input), canvas(canvas)
+Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) :
+		game(game), input(_input), canvas(canvas)
 {
 	heading = 0;
 	shipX = 0;
@@ -12,6 +13,7 @@ Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) : game(game), in
 	velocityX = 0;
 	velocityY = 0;
 	invincibility = 0;
+	invincibility_time = 0;
 	input->start(*this);
 }
 Ship::~Ship()
@@ -79,16 +81,42 @@ void Ship::update(uint _time)
 }
 void Ship::draw()
 {
-	if(!invincibility || (invincibility && invincibility_time%250 >= 100))
+	
+	if(!invincibility || (invincibility && invincibility_time%250000 >= 100000))
 	{
 		canvas->fillTriangle(shipX0*2, shipY0*2, shipX1*2, shipY1*2, shipX2*2, shipY2*2, TFT_LIGHTGREY);
 		canvas->drawTriangle(shipX0*2, shipY0*2, shipX1*2, shipY1*2, shipX2*2, shipY2*2, TFT_LIGHTGREY);
 		//drawTriangle(shipX0*2, shipY0*2, shipX1*2, shipY1*2, shipX2*2, shipY2*2, TFT_DARKGREY);
 		canvas->fillTriangle(shipX0, shipY0, shipX1, shipY1, shipX2, shipY2, TFT_NAVY);
+
+		//"hitbox" drawing
+		// canvas->drawFastHLine(shipX - 4, shipY, 8, TFT_RED);
+		// canvas->drawFastVLine(shipX, shipY - 4, 8, TFT_RED);
+		
 	}
 	bullets.draw(canvas);
 }
 void Ship::shoot()
 {
 	bullets.create(shipX1, shipY1, headingTable[heading][0]*20, headingTable[heading][1]*20, 40);
+}
+void Ship::destroyed()
+{
+	invincibility = 1;
+	invincibility_time = 0;
+	shipX = canvas->width()/2;
+	shipY = canvas->height()/2;
+	velocityX = 0;
+	velocityY = 0;
+}
+ShipCoordinates Ship::getCoordinates()
+{
+	ShipCoordinates coords;
+	coords.x1 = shipX0;
+	coords.y1 = shipY0;
+	coords.x2 = shipX1;
+	coords.y2 = shipY1;
+	coords.x3 = shipX2;
+	coords.y3 = shipX2;
+	return coords;
 }
