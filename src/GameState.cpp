@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "Ship/PlayerInputComponent.h"
 #include "bitmaps/backdrop.hpp"
+#include "bitmaps/gameover.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 const char *GameState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
@@ -9,16 +10,18 @@ GameState::GameState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 	ship = new Ship(this, new PlayerInputComponent(), display);
+	UIship = new Ship(this, nullptr, display);
 	ship->shipX = display->width()/2;
 	ship->shipY = display->height()/2;
+	UIship->shipX = 99;
+	UIship->shipY = 10;
 	life = 3;
 	score = 0;
 	level = 0;
 	asteroidTime = 0;
 	dead = 0;
 	deadTime = 0;
-	
-	asteroids.create(float(random(10, 119)), float(random(10, 119)), random(-10, 10) * 0.05, random(-10, 10) * 0.05, AsteroidType::asteroid, random(0,3));
+	levelChangeTime = 2000000;
 }
 
 GameState::~GameState()
@@ -48,19 +51,31 @@ void GameState::update(uint _time, SpaceRocks& game)
 
 	ship->update(_time);
 	asteroids.update(display);
-
+	bool noAsteroids = 1;
 	//collision check
 	for(int i = 0; i < asteroids.POOL_SIZE; i++)
 	{
 		//continue if blank asteroid or ship is invincible
 		if(!asteroids.asteroids[i].inUse()) continue;
-
+		noAsteroids = 0;
 		for(uint8_t j = 0; j < ship->bullets.POOL_SIZE; j++)
 		{
 			if(!ship->bullets.bullets[j].inUse()) continue;
 			if(rectRect(ship->bullets.bullets[j].x, ship->bullets.bullets[j].y, 2, 2,
 				asteroids.asteroids[i].x, asteroids.asteroids[i].y, asteroids.asteroids[i].getWidth(), asteroids.asteroids[i].getWidth()))
 			{
+				switch (asteroids.asteroids[i].type)
+				{
+				case AsteroidType::asteroid:
+					score+=2;
+					break;
+				case AsteroidType::rock:
+					score+=4;
+					break;
+				case AsteroidType::pebble:
+					score+=8;
+					break;
+				}
 				asteroids.broken(i);
 				ship->bullets.bullets[j].hit();
 			}
@@ -84,6 +99,23 @@ void GameState::update(uint _time, SpaceRocks& game)
 			}
 		}
 	}
+	if(noAsteroids)
+	{
+		if(levelChangeTime < 0)
+		{
+			levelChangeTime = 0;
+		}
+		else
+		{
+			levelChangeTime+=_time;
+		}
+		
+		if(levelChangeTime >= 2000000)
+		{
+			newLevel();
+		}
+	}
+
 }
 void GameState::draw()
 {
@@ -100,12 +132,27 @@ void GameState::draw()
 		display->drawLine(ship->shipX + passes, ship->shipY - passes, ship->shipX + passes + 2, ship->shipY - passes - 2, TFT_WHITE);
 		display->drawLine(ship->shipX - passes, ship->shipY + passes, ship->shipX - passes - 2, ship->shipY + passes + 2, TFT_WHITE);
 	}
+	else{
+		ship->draw();
+	}
 	asteroids.draw(display);
-	ship->draw();
+	display->setTextWrap(0);
+	display->setTextFont(2);
+	display->setTextSize(1);
+	display->setTextColor(TFT_GREEN);
+	display->setCursor(4, 2);
+	display->printf("LV:%d    %04d    X%d", level, score, life);
+	UIship->draw();
 }
 void GameState::gameOver()
 {
-
+	for (int i = 0; i < display->height(); i+=4)
+	{
+		display->drawFastHLine(0, i, display->width(), TFT_DARKGREY);
+		display->drawFastHLine(0, i+1, display->width(), TFT_DARKGREY);
+	}
+	display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
+	display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
 }
 bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
 	if (x1 + w1 >= x2 && x1 <= x2 + w2 &&
@@ -114,4 +161,12 @@ bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float
 		return true;
 	}
 	return false;
+}
+void GameState::newLevel()
+{
+	level++;
+	for(uint8_t i = 0; i < level; i++){
+		asteroids.create(float(random(10, 119)), float(random(10, 119)), random(-10, 10) * 0.05, random(-10, 10) * 0.05, AsteroidType::asteroid, random(0,3));
+	}
+	levelChangeTime = -1;
 }

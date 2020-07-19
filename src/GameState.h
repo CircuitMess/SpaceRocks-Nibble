@@ -13,8 +13,9 @@ public:
 	void draw() override;
 	void start(SpaceRocks& game) override;
 	void gameOver();
-
 	bool rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2);
+	void newLevel();
+
 	uint8_t life;
 	uint32_t score;
 	uint8_t level;
@@ -22,6 +23,7 @@ public:
 private:
 	static const char *titleMenu[3] PROGMEM;
 	Ship* ship;
+	Ship* UIship;
 	AsteroidPool asteroids;
 	uint8_t titleCursor;
 	bool blinkState;
@@ -29,6 +31,7 @@ private:
 	static GameState* instance;
 	bool dead;
 	uint deadTime;
+	uint levelChangeTime;
 
 
 };

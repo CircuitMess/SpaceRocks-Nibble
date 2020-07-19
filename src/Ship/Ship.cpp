@@ -14,7 +14,7 @@ Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) :
 	velocityY = 0;
 	invincibility = 0;
 	invincibility_time = 0;
-	input->start(*this);
+	if(input != nullptr) input->start(*this);
 }
 Ship::~Ship()
 {
@@ -22,7 +22,7 @@ Ship::~Ship()
 }
 void Ship::update(uint _time)
 {
-	input->update(_time, *this);
+	if(input != nullptr) input->update(_time, *this);
 	bullets.update(canvas);
 
 	//invincibility handling

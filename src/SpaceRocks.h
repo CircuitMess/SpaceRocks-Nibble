@@ -25,6 +25,7 @@ public:
 	void newGame();
 	void openHighscores();
 	void pauseGame();
+	void gameOver();
 private:
 	State *state;
 	Display *display;
