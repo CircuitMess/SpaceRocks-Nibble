@@ -98,7 +98,7 @@ void Ship::draw()
 }
 void Ship::shoot()
 {
-	bullets.create(shipX1, shipY1, headingTable[heading][0]*20, headingTable[heading][1]*20, 40);
+	bullets.create(shipX1, shipY1, headingTable[heading][0]*20, headingTable[heading][1]*20, 30);
 }
 void Ship::destroyed()
 {

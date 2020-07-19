@@ -23,9 +23,10 @@ public:
 	bool inUse();
 	float x, y;
 	uint8_t getWidth();
+	void destroyed();
+	AsteroidType type;
 private:
 	float xVel, yVel;
-	AsteroidType type;
 	uint8_t look;
 	static const uint16_t *bitmaps[3][3];
 	static constexpr uint8_t bitmapSizes[3] = {24, 16, 10};

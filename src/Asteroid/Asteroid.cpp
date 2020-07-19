@@ -35,7 +35,7 @@ void Asteroid::init(float _x, float _y, float _xVel, float _yVel, AsteroidType _
 	xVel = _xVel;
 	yVel = _yVel;
 	type = _type;
-	look = look;
+	look = _look;
 }
 void Asteroid::update(Sprite* canvas)
 {
@@ -47,17 +47,17 @@ void Asteroid::update(Sprite* canvas)
 	//out-of-bounds handling
 	uint8_t asteroidWidth = 5 - uint8_t(type);
 
-	if (x < -asteroidWidth){
+	if (x < asteroidWidth){
 		x = canvas->width() - asteroidWidth;
 	}
 	if (x > canvas->width() - asteroidWidth){
-		x = 0;
+		x = asteroidWidth;
 	}
-	if (y < -asteroidWidth){
+	if (y < asteroidWidth){
 		y = canvas->height() - asteroidWidth;
 	}
 	if (y > canvas->height() - asteroidWidth){
-		y = 0;
+		y = asteroidWidth;
 	}
 }
 void Asteroid::draw(Sprite* canvas)
@@ -72,4 +72,8 @@ uint8_t Asteroid::getWidth()
 {
 	if(!inUse()) return 0;
 	return bitmapSizes[uint8_t(type)];
+}
+void Asteroid::destroyed()
+{
+	type = AsteroidType::destroyed;
 }

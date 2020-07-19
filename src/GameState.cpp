@@ -53,12 +53,25 @@ void GameState::update(uint _time, SpaceRocks& game)
 	for(int i = 0; i < asteroids.POOL_SIZE; i++)
 	{
 		//continue if blank asteroid or ship is invincible
-		if(!asteroids.asteroids[i].inUse() || ship->invincibility) continue;
+		if(!asteroids.asteroids[i].inUse()) continue;
 
-		//check overlap - TODO: actual triangle-rectangle intersection
-		if(ship->shipX > asteroids.asteroids[i].x && ship->shipX < asteroids.asteroids[i].x + asteroids.asteroids[i].getWidth() && 
-		ship->shipY > asteroids.asteroids[i].y && ship->shipY < asteroids.asteroids[i].y + asteroids.asteroids[i].getWidth())
+		for(uint8_t j = 0; j < ship->bullets.POOL_SIZE; j++)
 		{
+			if(!ship->bullets.bullets[j].inUse()) continue;
+			if(rectRect(ship->bullets.bullets[j].x, ship->bullets.bullets[j].y, 2, 2,
+				asteroids.asteroids[i].x, asteroids.asteroids[i].y, asteroids.asteroids[i].getWidth(), asteroids.asteroids[i].getWidth()))
+			{
+				asteroids.broken(i);
+				ship->bullets.bullets[j].hit();
+			}
+		}
+
+		//check overlap ship-asteroid - TODO: actual triangle-rectangle intersection
+		if(ship->shipX > asteroids.asteroids[i].x && ship->shipX < asteroids.asteroids[i].x + asteroids.asteroids[i].getWidth() && 
+		ship->shipY > asteroids.asteroids[i].y && ship->shipY < asteroids.asteroids[i].y + asteroids.asteroids[i].getWidth() &&
+		!ship->invincibility)
+		{
+			asteroids.broken(i);
 			if(life > 0)
 			{
 				ship->destroyed();
@@ -93,4 +106,12 @@ void GameState::draw()
 void GameState::gameOver()
 {
 
+}
+bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
+	if (x1 + w1 >= x2 && x1 <= x2 + w2 &&
+		y1 + h1 >= y2 && y1 <= y2 + h2)
+	{
+		return true;
+	}
+	return false;
 }

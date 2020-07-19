@@ -9,10 +9,8 @@ public:
 	void create(float x, float y, float xVel, float yVel, uint lifetime);
 	void update(Sprite* canvas);
 	void draw(Sprite* canvas);
-private:
 	static const int POOL_SIZE = 8;
 	Bullet bullets[POOL_SIZE];
-
 };
 
 

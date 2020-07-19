@@ -26,4 +26,13 @@ void AsteroidPool::draw(Sprite* canvas)
 }
 void AsteroidPool::broken(uint8_t index)
 {
+	if(!asteroids[index].inUse()) return;
+	if(asteroids[index].type != AsteroidType::pebble)
+	{
+		create(asteroids[index].x, asteroids[index].y, random(-10, 10) * 0.05, random(-10, 10) * 0.05,
+			AsteroidType(uint8_t(asteroids[index].type) + 1), random(0,3));
+		create(asteroids[index].x, asteroids[index].y, random(-10, 10) * 0.05, random(-10, 10) * 0.05,
+			AsteroidType(uint8_t(asteroids[index].type) + 1), random(0,3));
+	}
+	asteroids[index].destroyed();
 }

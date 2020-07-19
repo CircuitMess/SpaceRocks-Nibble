@@ -10,7 +10,7 @@ public:
 	void update(Sprite* canvas);
 	void draw(Sprite* canvas);
 	void broken(uint8_t index);
-	static const int POOL_SIZE = 80;
+	static const int POOL_SIZE = 100;
 	Asteroid asteroids[POOL_SIZE];
 };
 

@@ -35,3 +35,7 @@ void Bullet::draw(Sprite* canvas)
 	if(!inUse() > 0) return;
 	canvas->fillRect(x, y, 2, 2, TFT_WHITE);
 }
+void Bullet::hit()
+{
+	framesLeft = 0;
+}
