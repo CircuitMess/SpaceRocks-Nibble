@@ -35,6 +35,12 @@ void GameState::start(SpaceRocks& _game)
 	Input::getInstance()->setBtnPressCallback(BTN_B, [](){
 		instance->game->pauseGame();
 	});
+	ship->start();
+}
+void GameState::stop()
+{
+	Input::getInstance()->removeBtnPressCallback(BTN_B);
+	ship->stop();
 }
 void GameState::update(uint _time, SpaceRocks& game)
 {
@@ -120,7 +126,7 @@ void GameState::update(uint _time, SpaceRocks& game)
 }
 void GameState::draw()
 {
-	display->drawIcon(backdrop, 0,0,128,128);
+	display->drawIcon(backdrop, 0, 0, 128, 128);
 	if(dead)
 	{
 		uint8_t passes = (deadTime / 200000) * 2;
@@ -144,10 +150,6 @@ void GameState::draw()
 	display->setCursor(4, 2);
 	display->printf("LV:%d    %04d    X%d", level, score, life);
 	UIship->draw();
-}
-void GameState::gameOver()
-{
-	
 }
 bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
 	if (x1 + w1 >= x2 && x1 <= x2 + w2 &&

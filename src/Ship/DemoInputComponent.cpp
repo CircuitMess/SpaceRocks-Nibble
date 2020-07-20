@@ -2,10 +2,9 @@
 #include "Input/Input.h"
 #include "../../ByteBoy.hpp"
 #include "Ship.h"
-
+DemoInputComponent::DemoInputComponent() : rotateTimer(0) {}
 void DemoInputComponent::start(Ship& ship)
 {
-	rotateTimer = 0;	
 }
 void DemoInputComponent::update(uint _time, Ship& ship)
 {

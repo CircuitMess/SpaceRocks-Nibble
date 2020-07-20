@@ -14,7 +14,14 @@ Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) :
 	velocityY = 0;
 	invincibility = 0;
 	invincibility_time = 0;
+}
+void Ship::start()
+{
 	if(input != nullptr) input->start(*this);
+}
+void Ship::stop()
+{
+	if(input != nullptr) input->stop();
 }
 Ship::~Ship()
 {

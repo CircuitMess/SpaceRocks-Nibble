@@ -25,6 +25,8 @@ class Ship
 public:
 	Ship(State *game, InputComponent *input, Sprite *canvas);
 	~Ship();
+	void start();
+	void stop();
 	void update(uint _time);
 	void draw();
 	void shoot();

@@ -3,6 +3,7 @@
 #include "TitleState.h"
 #include "GameState.h"
 #include "GameOverState.h"
+#include "PauseState.h"
 
 GameInfo Game::info = {"SpaceRocks", "Shoot the asteroids and survive!", icon};
 
@@ -49,7 +50,22 @@ void SpaceRocks::enterHighscore()
 }
 void SpaceRocks::pauseGame()
 {
-
+	state->stop();
+	pausedGameState = state;
+	state = new PauseState(canvas);
+	state->start(*this);
+}
+void SpaceRocks::resumeGame()
+{
+	delete state;
+	state = pausedGameState;
+	state->start(*this);
+}
+void SpaceRocks::quitGame()
+{
+	delete state;
+	state = new TitleState(canvas);
+	state->start(*this);
 }
 void SpaceRocks::openHighscores()
 {

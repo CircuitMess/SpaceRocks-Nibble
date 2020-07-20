@@ -26,3 +26,11 @@ void PlayerInputComponent::start(Ship& _ship)
 	});
 }
 void PlayerInputComponent::update(uint _time, Ship& ship){}
+
+void PlayerInputComponent::stop()
+{
+	Input::getInstance()->setButtonHeldRepeatCallback(BTN_LEFT, 0, nullptr);
+	Input::getInstance()->setButtonHeldRepeatCallback(BTN_RIGHT, 0, nullptr);
+	Input::getInstance()->setButtonHeldRepeatCallback(BTN_UP, 0, nullptr);
+	Input::getInstance()->removeBtnPressCallback(BTN_UP);
+}

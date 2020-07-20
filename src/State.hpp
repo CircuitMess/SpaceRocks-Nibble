@@ -11,6 +11,8 @@ public:
 	virtual void start(SpaceRocks& game) = 0;
 	virtual void update(uint _time, SpaceRocks& game) = 0;
 	virtual void draw() = 0;
+	virtual void stop(){}
+
 protected:
 	Sprite* display;
 	SpaceRocks* game;

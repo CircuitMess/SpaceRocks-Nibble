@@ -27,9 +27,12 @@ public:
 	void openHighscores();
 	void pauseGame();
 	void gameOver();
+	void resumeGame();
+	void quitGame();
 	uint score;
 private:
 	State *state;
+	State *pausedGameState;
 	Display *display;
 	Sprite *canvas;
 };

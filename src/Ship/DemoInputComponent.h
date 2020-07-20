@@ -7,6 +7,7 @@
 class DemoInputComponent : public InputComponent
 {
 public:
+	DemoInputComponent();
 	~DemoInputComponent(){}
 	void update(uint _time, Ship& ship) override;
 	void start(Ship& ship) override;

@@ -12,9 +12,10 @@ public:
 	void update(uint _time, SpaceRocks& game) override;
 	void draw() override;
 	void start(SpaceRocks& game) override;
-	void gameOver();
+	void stop() override;
 	bool rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2);
 	void newLevel();
+
 	
 	uint8_t life;
 	uint32_t score;

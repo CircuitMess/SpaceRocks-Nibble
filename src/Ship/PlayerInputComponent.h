@@ -11,6 +11,7 @@ public:
 	~PlayerInputComponent(){}
 	void update(uint _time, Ship& ship) override;
 	void start(Ship& ship) override;
+	void stop() override;
 private:
 	Ship* ship;
 	static PlayerInputComponent* instance;
