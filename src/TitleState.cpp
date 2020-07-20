@@ -6,6 +6,7 @@
 #include "bitmaps/arrowRight.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
+// #include "bitmaps/gameover.hpp"
 const char *TitleState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
 TitleState* TitleState::instance = nullptr;
 TitleState::TitleState(Sprite* sprite) : State(sprite)
@@ -105,4 +106,9 @@ void TitleState::draw()
 		display->drawIcon(arrowLeft, 4, 112, 4, 7, 2, TFT_BLACK);
 		display->drawIcon(arrowRight, 116, 112, 4, 7, 2, TFT_BLACK);
 	}
+	// Serial.println("before draw");
+	// delay(4);
+	// display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
+	// display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
+	//111111
 }

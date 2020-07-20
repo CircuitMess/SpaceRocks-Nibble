@@ -50,13 +50,13 @@ void Asteroid::update(Sprite* canvas)
 	if (x < asteroidWidth){
 		x = canvas->width() - asteroidWidth;
 	}
-	if (x > canvas->width() - asteroidWidth){
+	if (x > canvas->width() - 2*asteroidWidth){
 		x = asteroidWidth;
 	}
 	if (y < asteroidWidth){
 		y = canvas->height() - asteroidWidth;
 	}
-	if (y > canvas->height() - asteroidWidth){
+	if (y > canvas->height() - 2*asteroidWidth){
 		y = asteroidWidth;
 	}
 }

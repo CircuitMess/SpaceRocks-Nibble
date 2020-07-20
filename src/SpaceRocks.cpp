@@ -2,10 +2,11 @@
 #include "bitmaps/icon.hpp"
 #include "TitleState.h"
 #include "GameState.h"
+#include "GameOverState.h"
 
 GameInfo Game::info = {"SpaceRocks", "Shoot the asteroids and survive!", icon};
 
-SpaceRocks::SpaceRocks(Display& display) : Game(display), display(&display), canvas(display.getBaseSprite())
+SpaceRocks::SpaceRocks(Display& display) : Game(display), display(&display), canvas(display.getBaseSprite()), score(0)
 {
 	randomSeed(micros()*millis());
 	state = new TitleState(canvas);
@@ -36,7 +37,13 @@ void SpaceRocks::newGame()
 	state = new GameState(canvas);
 	state->start(*this);
 }
-void SpaceRocks::openHighscores()
+void SpaceRocks::gameOver()
+{
+	delete state;
+	state = new GameOverState(canvas);
+	state->start(*this);
+}
+void SpaceRocks::enterHighscore()
 {
 
 }
@@ -44,4 +51,7 @@ void SpaceRocks::pauseGame()
 {
 
 }
-void Spacer
+void SpaceRocks::openHighscores()
+{
+
+}

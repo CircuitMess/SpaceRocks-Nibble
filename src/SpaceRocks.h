@@ -23,9 +23,11 @@ public:
 	void stop() override;
 
 	void newGame();
+	void enterHighscore();
 	void openHighscores();
 	void pauseGame();
 	void gameOver();
+	uint score;
 private:
 	State *state;
 	Display *display;

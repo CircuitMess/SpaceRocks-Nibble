@@ -1,7 +1,6 @@
 #include "GameState.h"
 #include "Ship/PlayerInputComponent.h"
 #include "bitmaps/backdrop.hpp"
-#include "bitmaps/gameover.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 const char *GameState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
@@ -26,6 +25,7 @@ GameState::GameState(Sprite* sprite) : State(sprite)
 
 GameState::~GameState()
 {
+	Input::getInstance()->removeBtnPressCallback(BTN_B);
 	delete ship;
 }
 
@@ -42,9 +42,10 @@ void GameState::update(uint _time, SpaceRocks& game)
 	if(dead)
 	{
 		deadTime+=_time;
-		if(deadTime / 200000 >= 7)
+		if(int(deadTime / 200000) >= 7)
 		{
-			gameOver();
+			game.score = score;
+			game.gameOver();
 		}
 		return;
 	}
@@ -146,13 +147,7 @@ void GameState::draw()
 }
 void GameState::gameOver()
 {
-	for (int i = 0; i < display->height(); i+=4)
-	{
-		display->drawFastHLine(0, i, display->width(), TFT_DARKGREY);
-		display->drawFastHLine(0, i+1, display->width(), TFT_DARKGREY);
-	}
-	display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
-	display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
+	
 }
 bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
 	if (x1 + w1 >= x2 && x1 <= x2 + w2 &&
