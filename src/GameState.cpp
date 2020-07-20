@@ -162,8 +162,16 @@ bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float
 void GameState::newLevel()
 {
 	level++;
+	//TODO - speed up randomization of 
 	for(uint8_t i = 0; i < level; i++){
-		asteroids.create(float(random(10, 119)), float(random(10, 119)), random(-10, 10) * 0.05, random(-10, 10) * 0.05, AsteroidType::asteroid, random(0,3));
+		uint8_t tempX = random(10, 118);
+        uint8_t tempY =  random(10, 118);
+        while(abs(tempX - ship->shipX) < 40 && abs(tempY-ship->shipY) < 40)
+        {
+          tempX = random(10, 118);
+          tempY = random(10, 118);
+        }
+		asteroids.create(tempX, tempY, random(-10, 10) * 0.05, random(-10, 10) * 0.05, AsteroidType::asteroid, random(0,3));
 	}
 	levelChangeTime = -1;
 }

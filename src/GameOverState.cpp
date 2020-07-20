@@ -32,8 +32,8 @@ void GameOverState::draw()
 	}
 	else
 	{
-		display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
-		display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
+		// display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
+		// display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
 	}
 }
 void GameOverState::drawBitmap(int16_t x, int16_t y, const byte *bitmap, uint16_t color, uint8_t scale) {
@@ -47,10 +47,10 @@ void GameOverState::update(uint _time, SpaceRocks& game)
 		linesDrawn++;
 		if(linesDrawn >= 32){
 			Input::getInstance()->setBtnPressCallback(BTN_A, [](){
-				instance->game->enterHighscore();
+				instance->game->quitGame();
 			});
 			Input::getInstance()->setBtnPressCallback(BTN_B, [](){
-				instance->game->enterHighscore();
+				instance->game->quitGame();
 			});
 		}
 	}

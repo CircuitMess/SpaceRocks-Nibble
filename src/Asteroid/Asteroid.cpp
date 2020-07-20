@@ -41,24 +41,29 @@ void Asteroid::update(Sprite* canvas)
 {
 	if(!inUse()) return;
 
-	x+=xVel;
-	y+=yVel;
+
 
 	//out-of-bounds handling
 	uint8_t asteroidWidth = 5 - uint8_t(type);
+	Serial.println(asteroidWidth);
 
-	if (x < asteroidWidth){
-		x = canvas->width() - asteroidWidth;
+	if (int(x) < asteroidWidth){
+		x = canvas->width() - 3*asteroidWidth;
 	}
-	if (x > canvas->width() - 2*asteroidWidth){
+	if (int(x) > canvas->width() - 2*asteroidWidth){
 		x = asteroidWidth;
 	}
-	if (y < asteroidWidth){
-		y = canvas->height() - asteroidWidth;
+	if (int(y) < asteroidWidth){
+		y = canvas->height() - 3*asteroidWidth;
 	}
-	if (y > canvas->height() - 2*asteroidWidth){
+	if (int(y) > canvas->height() - 2*asteroidWidth){
 		y = asteroidWidth;
 	}
+
+	x+=xVel;
+	y+=yVel;
+
+	Serial.printf("x: %.4f, y: %.4f\n", x, y);
 }
 void Asteroid::draw(Sprite* canvas)
 {
