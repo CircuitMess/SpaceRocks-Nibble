@@ -1,6 +1,6 @@
 #include "PlayerInputComponent.h"
 #include "Input/Input.h"
-#include "../../ByteBoy.hpp"
+#include "../../Nibble.hpp"
 #include "Ship.h"
 constexpr float PlayerInputComponent::headingTable[24][2];
 PlayerInputComponent* PlayerInputComponent::instance = nullptr;

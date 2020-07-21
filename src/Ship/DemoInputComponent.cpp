@@ -1,6 +1,6 @@
 #include "DemoInputComponent.h"
 #include "Input/Input.h"
-#include "../../ByteBoy.hpp"
+#include "../../Nibble.hpp"
 #include "Ship.h"
 DemoInputComponent::DemoInputComponent() : rotateTimer(0) {}
 void DemoInputComponent::start(Ship& ship)

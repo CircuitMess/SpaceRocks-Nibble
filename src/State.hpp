@@ -1,7 +1,7 @@
-#ifndef BLOCKTRIS_GAMESTATE_H
-#define BLOCKTRIS_GAMESTATE_H
+#ifndef SPACEROCKS_GAMESTATE_H
+#define SPACEROCKS_GAMESTATE_H
 #include <Display/Sprite.h>
-#include "../ByteBoy.hpp"
+#include "../Nibble.hpp"
 class SpaceRocks;
 class State
 {

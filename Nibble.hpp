@@ -1,5 +1,5 @@
-#ifndef BYTEBOY_HPP
-#define BYTEBOY_HPP
+#ifndef NIBBLE_HPP
+#define NIBBLE_HPP
 
 #define BTN_UP 0
 #define BTN_DOWN 1

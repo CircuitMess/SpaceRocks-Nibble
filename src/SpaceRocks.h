@@ -8,7 +8,7 @@
 #include <gpio.h>
 #include <avr/pgmspace.h>
 #include <Support/Context.h>
-#include "../ByteBoy.hpp"
+#include "../Nibble.hpp"
 #include <UI/Image.h>
 #include <Display/Sprite.h>
 #include "State.hpp"
