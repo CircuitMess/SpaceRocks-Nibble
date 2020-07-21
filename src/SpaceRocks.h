@@ -11,8 +11,8 @@
 #include "../Nibble.hpp"
 #include <UI/Image.h>
 #include <Display/Sprite.h>
-#include "State.hpp"
 
+class State;
 class SpaceRocks : public Context, public UpdateListener
 {
 public:

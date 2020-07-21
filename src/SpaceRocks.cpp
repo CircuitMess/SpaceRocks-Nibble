@@ -1,4 +1,5 @@
 #include "SpaceRocks.h"
+#include "State.hpp"
 #include "TitleState.h"
 #include "GameState.h"
 #include "GameOverState.h"
