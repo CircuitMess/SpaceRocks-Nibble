@@ -22,6 +22,7 @@ void PlayerInputComponent::start(Ship& _ship)
 		instance->ship->velocityY += headingTable[instance->ship->heading][1];
 	});
 	Input::getInstance()->setBtnPressCallback(BTN_A, [](){
+		tone(BUZZ_PIN, 400, 50);
 		instance->ship->shoot();
 	});
 }
