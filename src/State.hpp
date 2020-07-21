@@ -1,5 +1,5 @@
-#ifndef SPACEROCKS_GAMESTATE_H
-#define SPACEROCKS_GAMESTATE_H
+#ifndef SPACEROCKS_STATE_H
+#define SPACEROCKS_STATE_H
 #include <Display/Sprite.h>
 #include "../Nibble.hpp"
 class SpaceRocks;
