@@ -13,7 +13,7 @@
 #include <Display/Sprite.h>
 #include "State.hpp"
 
-class SpaceRocks : public Game, public UpdateListener
+class SpaceRocks : public Context, public UpdateListener
 {
 public:
 	SpaceRocks(Display& Display);

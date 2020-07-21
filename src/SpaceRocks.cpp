@@ -1,13 +1,10 @@
 #include "SpaceRocks.h"
-#include "bitmaps/icon.hpp"
 #include "TitleState.h"
 #include "GameState.h"
 #include "GameOverState.h"
 #include "PauseState.h"
 
-GameInfo Game::info = {"SpaceRocks", "Shoot the asteroids and survive!", icon};
-
-SpaceRocks::SpaceRocks(Display& display) : Game(display), display(&display), canvas(display.getBaseSprite()), score(0)
+SpaceRocks::SpaceRocks(Display& display) : Context(display), display(&display), canvas(display.getBaseSprite()), score(0)
 {
 	randomSeed(micros()*millis());
 	state = new TitleState(canvas);

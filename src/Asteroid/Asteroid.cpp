@@ -1,17 +1,17 @@
 #include "Asteroid.h"
-#include "../bitmaps/asteroid1.hpp"
-#include "../bitmaps/asteroid2.hpp"
-#include "../bitmaps/asteroid3.hpp"
-#include "../bitmaps/rock1.hpp"
-#include "../bitmaps/rock2.hpp"
-#include "../bitmaps/rock3.hpp"
-#include "../bitmaps/pebble1.hpp"
-#include "../bitmaps/pebble2.hpp"
-#include "../bitmaps/pebble3.hpp"
+#include "../bitmaps/spacerocks_asteroid1.hpp"
+#include "../bitmaps/spacerocks_asteroid2.hpp"
+#include "../bitmaps/spacerocks_asteroid3.hpp"
+#include "../bitmaps/spacerocks_rock1.hpp"
+#include "../bitmaps/spacerocks_rock2.hpp"
+#include "../bitmaps/spacerocks_rock3.hpp"
+#include "../bitmaps/spacerocks_pebble1.hpp"
+#include "../bitmaps/spacerocks_pebble2.hpp"
+#include "../bitmaps/spacerocks_pebble3.hpp"
 const uint16_t *Asteroid::bitmaps[3][3] = {
-	{asteroid1, asteroid2, asteroid3},
-	{rock1, rock2, rock3},
-	{pebble1, pebble2, pebble3}
+	{spacerocks_asteroid1, spacerocks_asteroid2, spacerocks_asteroid3},
+	{spacerocks_rock1, spacerocks_rock2, spacerocks_rock3},
+	{spacerocks_pebble1, spacerocks_pebble2, spacerocks_pebble3}
 };
 constexpr uint8_t Asteroid::bitmapSizes[3];
 constexpr uint8_t Asteroid::hitboxWidth[3];

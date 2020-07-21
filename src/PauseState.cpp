@@ -1,6 +1,6 @@
 #include "PauseState.h"
 #include "Ship/PlayerInputComponent.h"
-#include "bitmaps/backdrop.hpp"
+#include "bitmaps/spacerocks_backdrop.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 PauseState* PauseState::instance = nullptr;
@@ -32,7 +32,7 @@ void PauseState::update(uint _time, SpaceRocks& game)
 }
 void PauseState::draw()
 {
-	display->drawIcon(backdrop, 0, 0, 128, 128);
+	display->drawIcon(spacerocks_backdrop, 0, 0, 128, 128);
 	display->setCursor(32, display->height()/2 - 25);
 	display->setTextSize(2);
 	display->setTextFont(2);

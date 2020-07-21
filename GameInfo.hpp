@@ -1,9 +1,6 @@
 #ifndef GAME_INFO
 #define GAME_INFO
-#include <Arduino.h>
-#include <Display/Display.h>
-#include "src/bitmaps/icon.hpp"
-#include "src/SpaceRocks.h"
+
 class Context;
 struct GameInfo {
 	const char* title;
@@ -12,9 +9,15 @@ struct GameInfo {
 	Context* (*launch)(Display& display);
 };
 #endif
-const GameInfo SnakeInfo {
+
+#include <Arduino.h>
+#include <Display/Display.h>
+#include "src/bitmaps/spacerocks_icon.hpp"
+#include "src/SpaceRocks.h"
+
+const GameInfo SpaceRocksInfo {
 		"SpaceRocks",
 		"Shoot the asteroids to survive!",
-		icon,
+		spacerocks_icon,
 		[](Display& display) -> Context* { return new SpaceRocks(display); }
 };

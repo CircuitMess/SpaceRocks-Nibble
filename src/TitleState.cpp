@@ -1,12 +1,12 @@
 #include "TitleState.h"
 #include "Ship/DemoInputComponent.h"
-#include "bitmaps/backdrop.hpp"
-#include "bitmaps/title.hpp"
-#include "bitmaps/arrowLeft.hpp"
-#include "bitmaps/arrowRight.hpp"
+#include "bitmaps/spacerocks_backdrop.hpp"
+#include "bitmaps/spacerocks_title.hpp"
+#include "bitmaps/spacerocks_arrowLeft.hpp"
+#include "bitmaps/spacerocks_arrowRight.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
-// #include "bitmaps/gameover.hpp"
+
 const char *TitleState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
 TitleState* TitleState::instance = nullptr;
 TitleState::TitleState(Sprite* sprite) : State(sprite)
@@ -72,9 +72,9 @@ void TitleState::update(uint _time, SpaceRocks& game)
 }
 void TitleState::draw()
 {
-	display->drawIcon(backdrop, 0,0,128,128);
+	display->drawIcon(spacerocks_backdrop, 0,0,128,128);
 	ship->draw();
-	display->drawIcon(title, 5,5,118,60, 1, TFT_WHITE);
+	display->drawIcon(spacerocks_title, 5,5,118,60, 1, TFT_WHITE);
 
 	display->setCursor(118, 110);
 	display->setTextFont(2);
@@ -89,24 +89,24 @@ void TitleState::draw()
 	{
 		if (titleCursor == 0)
 		{
-			display->drawIcon(arrowLeft, 4, 112, 4, 7, 2, TFT_BLACK);
-			display->drawIcon(arrowRight, 118, 112, 4, 7, 2, TFT_BLACK);
+			display->drawIcon(spacerocks_arrowLeft, 4, 112, 4, 7, 2, TFT_BLACK);
+			display->drawIcon(spacerocks_arrowRight, 118, 112, 4, 7, 2, TFT_BLACK);
 		}
 		else if (titleCursor == 2)
 		{
-			display->drawIcon(arrowLeft, 2, 112, 4, 7, 2, TFT_BLACK);
-			display->drawIcon(arrowRight, 116, 112, 4, 7, 2, TFT_BLACK);
+			display->drawIcon(spacerocks_arrowLeft, 2, 112, 4, 7, 2, TFT_BLACK);
+			display->drawIcon(spacerocks_arrowRight, 116, 112, 4, 7, 2, TFT_BLACK);
 		}
 		else
 		{
-			display->drawIcon(arrowLeft, 2, 112, 4, 7, 2, TFT_BLACK);
-			display->drawIcon(arrowRight, 118, 112, 4, 7, 2, TFT_BLACK);
+			display->drawIcon(spacerocks_arrowLeft, 2, 112, 4, 7, 2, TFT_BLACK);
+			display->drawIcon(spacerocks_arrowRight, 118, 112, 4, 7, 2, TFT_BLACK);
 		}
 	}
 	else
 	{
-		display->drawIcon(arrowLeft, 4, 112, 4, 7, 2, TFT_BLACK);
-		display->drawIcon(arrowRight, 116, 112, 4, 7, 2, TFT_BLACK);
+		display->drawIcon(spacerocks_arrowLeft, 4, 112, 4, 7, 2, TFT_BLACK);
+		display->drawIcon(spacerocks_arrowRight, 116, 112, 4, 7, 2, TFT_BLACK);
 	}
 	// Serial.println("before draw");
 	// delay(4);

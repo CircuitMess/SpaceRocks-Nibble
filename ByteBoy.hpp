@@ -12,22 +12,5 @@
 #define BUZZ_PIN 12
 #define BL_PIN 16
 #define NO_KEY '\0'
-#include <Arduino.h>
-#include <Support/Context.h>
-
-struct GameInfo
-{
-	char* title;
-	char* description;
-	const unsigned short* icon;
-};
-class Game : public Context
-{
-public:
-	Game(Display &display);
-	static GameInfo getGameInfo();
-protected:
-	static GameInfo info;
-};
 
 #endif

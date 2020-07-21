@@ -1,6 +1,6 @@
 #include "GameState.h"
 #include "Ship/PlayerInputComponent.h"
-#include "bitmaps/backdrop.hpp"
+#include "bitmaps/spacerocks_backdrop.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 const char *GameState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
@@ -126,7 +126,7 @@ void GameState::update(uint _time, SpaceRocks& game)
 }
 void GameState::draw()
 {
-	display->drawIcon(backdrop, 0, 0, 128, 128);
+	display->drawIcon(spacerocks_backdrop, 0, 0, 128, 128);
 	if(dead)
 	{
 		uint8_t passes = (deadTime / 200000) * 2;

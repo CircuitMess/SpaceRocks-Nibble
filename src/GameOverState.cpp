@@ -1,5 +1,5 @@
 #include "GameOverState.h"
-#include "bitmaps/gameover.hpp"
+#include "bitmaps/spacerocks_gameover.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 
