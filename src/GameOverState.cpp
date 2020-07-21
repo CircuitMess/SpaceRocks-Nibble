@@ -24,7 +24,7 @@ void GameOverState::draw()
 {
 	if(linesDrawn < 32)
 	{
-		for (int i = 0; i < linesDrawn*4; i+=4)
+		for (int i = 0; i <= linesDrawn*4; i+=4)
 		{
 			display->drawFastHLine(0, i, display->width(), TFT_DARKGREY);
 			display->drawFastHLine(0, i+1, display->width(), TFT_DARKGREY);
@@ -32,8 +32,8 @@ void GameOverState::draw()
 	}
 	else
 	{
-		// display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
-		// display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
+		display->drawMonochromeIcon(spacerocks_gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
+		display->drawMonochromeIcon(spacerocks_gameover, 9, 14, 107, 98, 1, TFT_BLACK);
 	}
 }
 void GameOverState::drawBitmap(int16_t x, int16_t y, const byte *bitmap, uint16_t color, uint8_t scale) {
