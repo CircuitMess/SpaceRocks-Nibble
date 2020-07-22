@@ -3,6 +3,9 @@
 
 #include "State.hpp"
 
+namespace SpaceRocks
+{
+
 class GameOverState : public State
 {
 public:
@@ -17,5 +20,6 @@ private:
 	static GameOverState *instance;
 };
 
+};
 
 #endif

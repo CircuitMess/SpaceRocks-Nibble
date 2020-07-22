@@ -13,7 +13,7 @@
 Display display(128, 128, BL_PIN, 0);
 I2cExpander i2c;
 InputI2C buttons(&i2c);
-SpaceRocks game(display);
+SpaceRocks::SpaceRocks game(display);
 
 void setup() {
 	gpio_init();

@@ -5,67 +5,67 @@
 #include "GameOverState.h"
 #include "PauseState.h"
 
-SpaceRocks::SpaceRocks(Display& display) : Context(display), display(&display), canvas(display.getBaseSprite()), score(0)
+SpaceRocks::SpaceRocks::SpaceRocks(Display& display) : Context(display), display(&display), canvas(display.getBaseSprite()), score(0)
 {
 	randomSeed(micros()*millis());
 	state = new TitleState(canvas);
 	state->start(*this);
 }
 
-void SpaceRocks::draw()
+void SpaceRocks::SpaceRocks::draw()
 {
 	state->draw();
 }
-void SpaceRocks::update(uint _time)
+void SpaceRocks::SpaceRocks::update(uint _time)
 {
 	state->update(_time, *this);
 	draw();
 	display->commit();
 }
-void SpaceRocks::start()
+void SpaceRocks::SpaceRocks::start()
 {
 	UpdateManager::addListener(this);
 }
-void SpaceRocks::stop()
+void SpaceRocks::SpaceRocks::stop()
 {
 	delete state;
 }
-void SpaceRocks::newGame()
+void SpaceRocks::SpaceRocks::newGame()
 {
 	delete state;
 	state = new GameState(canvas);
 	state->start(*this);
 }
-void SpaceRocks::gameOver()
+void SpaceRocks::SpaceRocks::gameOver()
 {
 	delete state;
 	state = new GameOverState(canvas);
 	state->start(*this);
 }
-void SpaceRocks::enterHighscore()
+void SpaceRocks::SpaceRocks::enterHighscore()
 {
 
 }
-void SpaceRocks::pauseGame()
+void SpaceRocks::SpaceRocks::pauseGame()
 {
 	state->stop();
 	pausedGameState = state;
 	state = new PauseState(canvas);
 	state->start(*this);
 }
-void SpaceRocks::resumeGame()
+void SpaceRocks::SpaceRocks::resumeGame()
 {
 	delete state;
 	state = pausedGameState;
 	state->start(*this);
 }
-void SpaceRocks::quitGame()
+void SpaceRocks::SpaceRocks::quitGame()
 {
 	delete state;
 	state = new TitleState(canvas);
 	state->start(*this);
 }
-void SpaceRocks::openHighscores()
+void SpaceRocks::SpaceRocks::openHighscores()
 {
 
 }

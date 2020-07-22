@@ -1,5 +1,5 @@
 #include "BulletPool.h"
-void BulletPool::create(float x, float y, float xVel, float yVel, uint lifetime)
+void SpaceRocks::BulletPool::create(float x, float y, float xVel, float yVel, uint lifetime)
 {
 	for(uint8_t i = 0; i < POOL_SIZE; i++)
 	{
@@ -10,14 +10,14 @@ void BulletPool::create(float x, float y, float xVel, float yVel, uint lifetime)
 		}
 	}
 }
-void BulletPool::update(Sprite* canvas)
+void SpaceRocks::BulletPool::update(Sprite* canvas)
 {
 	for(uint8_t i = 0; i < POOL_SIZE; i++)
 	{
 		bullets[i].update(canvas);
 	}
 }
-void BulletPool::draw(Sprite* canvas)
+void SpaceRocks::BulletPool::draw(Sprite* canvas)
 {
 	for(uint8_t i = 0; i < POOL_SIZE; i++)
 	{

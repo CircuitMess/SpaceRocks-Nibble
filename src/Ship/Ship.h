@@ -13,6 +13,9 @@
 #define shipX2  shipX + (int8_t)(pgm_read_byte(&shipTbl[4][heading]))
 #define shipY2  shipY + (int8_t)(pgm_read_byte(&shipTbl[5][heading]))
 
+namespace SpaceRocks
+{
+
 struct ShipCoordinates
 {
 	float x1; float y1;
@@ -71,6 +74,8 @@ private:
 		{ -0.17, -0.10}, { -0.14, -0.14},
 		{ -0.10, -0.17}, { -0.05, -0.19}
 	};
+};
+
 };
 
 #endif

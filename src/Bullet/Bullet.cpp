@@ -1,17 +1,17 @@
 #include "Bullet.h"
 
-Bullet::Bullet() : framesLeft(0)
+SpaceRocks::Bullet::Bullet() : framesLeft(0)
 {
 }
 
-Bullet::~Bullet()
+SpaceRocks::Bullet::~Bullet()
 {
 }
-bool Bullet::inUse()
+bool SpaceRocks::Bullet::inUse()
 {
 	return framesLeft > 0;
 }
-void Bullet::init(float _x, float _y, float _xVel, float _yVel, uint lifetime)
+void SpaceRocks::Bullet::init(float _x, float _y, float _xVel, float _yVel, uint lifetime)
 {
 	x=_x;
 	y=_y;
@@ -19,7 +19,7 @@ void Bullet::init(float _x, float _y, float _xVel, float _yVel, uint lifetime)
 	yVel = _yVel;
 	framesLeft = lifetime;
 }
-void Bullet::update(Sprite* canvas)
+void SpaceRocks::Bullet::update(Sprite* canvas)
 {
 	if(!inUse() > 0) return;
 	framesLeft--;
@@ -30,12 +30,12 @@ void Bullet::update(Sprite* canvas)
 	if (y < -5) y = y + canvas->height()+10;
 	if (y > canvas->height()+5) y = y - canvas->height()-10;
 }
-void Bullet::draw(Sprite* canvas)
+void SpaceRocks::Bullet::draw(Sprite* canvas)
 {
 	if(!inUse() > 0) return;
 	canvas->fillRect(x, y, 2, 2, TFT_WHITE);
 }
-void Bullet::hit()
+void SpaceRocks::Bullet::hit()
 {
 	framesLeft = 0;
 }

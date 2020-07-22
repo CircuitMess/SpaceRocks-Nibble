@@ -4,6 +4,9 @@
 #include "State.hpp"
 #include "Ship/Ship.h"
 
+namespace SpaceRocks
+{
+	
 class TitleState : public State
 {
 public:
@@ -22,5 +25,6 @@ private:
 	static TitleState* instance;
 };
 
+};
 
 #endif

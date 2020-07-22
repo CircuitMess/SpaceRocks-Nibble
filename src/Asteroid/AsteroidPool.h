@@ -3,6 +3,10 @@
 #include <Arduino.h>
 #include <Display/Sprite.h>
 #include "Asteroid.h"
+
+namespace SpaceRocks
+{
+
 class AsteroidPool
 {
 public:
@@ -14,5 +18,6 @@ public:
 	Asteroid asteroids[POOL_SIZE];
 };
 
+};
 
 #endif

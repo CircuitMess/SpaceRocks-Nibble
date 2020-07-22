@@ -2,13 +2,13 @@
 #include "Input/Input.h"
 #include "../../Nibble.hpp"
 #include "Ship.h"
-constexpr float PlayerInputComponent::headingTable[24][2];
-PlayerInputComponent* PlayerInputComponent::instance = nullptr;
-PlayerInputComponent::PlayerInputComponent()
+constexpr float SpaceRocks::PlayerInputComponent::headingTable[24][2];
+SpaceRocks::PlayerInputComponent* SpaceRocks::PlayerInputComponent::instance = nullptr;
+SpaceRocks::PlayerInputComponent::PlayerInputComponent()
 {
 	instance = this;
 }
-void PlayerInputComponent::start(Ship& _ship)
+void SpaceRocks::PlayerInputComponent::start(Ship& _ship)
 {
 	ship = &_ship;
 	Input::getInstance()->setButtonHeldRepeatCallback(BTN_LEFT, 10, [](uint){
@@ -26,9 +26,9 @@ void PlayerInputComponent::start(Ship& _ship)
 		instance->ship->shoot();
 	});
 }
-void PlayerInputComponent::update(uint _time, Ship& ship){}
+void SpaceRocks::PlayerInputComponent::update(uint _time, Ship& ship){}
 
-void PlayerInputComponent::stop()
+void SpaceRocks::PlayerInputComponent::stop()
 {
 	Input::getInstance()->setButtonHeldRepeatCallback(BTN_LEFT, 0, nullptr);
 	Input::getInstance()->setButtonHeldRepeatCallback(BTN_RIGHT, 0, nullptr);

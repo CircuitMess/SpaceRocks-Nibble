@@ -4,6 +4,9 @@
 #include "InputComponent.h"
 #include <avr/pgmspace.h>
 
+namespace SpaceRocks
+{
+
 class DemoInputComponent : public InputComponent
 {
 public:
@@ -15,4 +18,5 @@ private:
 	uint rotateTimer = 0;
 };
 
+};
 #endif

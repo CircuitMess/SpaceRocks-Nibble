@@ -3,9 +3,9 @@
 #include "bitmaps/spacerocks_backdrop.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
-const char *GameState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
-GameState* GameState::instance = nullptr;
-GameState::GameState(Sprite* sprite) : State(sprite)
+const char *SpaceRocks::GameState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
+SpaceRocks::GameState* SpaceRocks::GameState::instance = nullptr;
+SpaceRocks::GameState::GameState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 	ship = new Ship(this, new PlayerInputComponent(), display);
@@ -23,13 +23,13 @@ GameState::GameState(Sprite* sprite) : State(sprite)
 	levelChangeTime = 2000000;
 }
 
-GameState::~GameState()
+SpaceRocks::GameState::~GameState()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_B);
 	delete ship;
 }
 
-void GameState::start(SpaceRocks& _game)
+void SpaceRocks::GameState::start(SpaceRocks& _game)
 {
 	game = &_game;
 	Input::getInstance()->setBtnPressCallback(BTN_B, [](){
@@ -37,12 +37,12 @@ void GameState::start(SpaceRocks& _game)
 	});
 	ship->start();
 }
-void GameState::stop()
+void SpaceRocks::GameState::stop()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_B);
 	ship->stop();
 }
-void GameState::update(uint _time, SpaceRocks& game)
+void SpaceRocks::GameState::update(uint _time, SpaceRocks& game)
 {
 	//death animation handling
 	if(dead)
@@ -126,7 +126,7 @@ void GameState::update(uint _time, SpaceRocks& game)
 	}
 
 }
-void GameState::draw()
+void SpaceRocks::GameState::draw()
 {
 	display->drawIcon(spacerocks_backdrop, 0, 0, 128, 128);
 	if(dead)
@@ -153,7 +153,7 @@ void GameState::draw()
 	display->printf("LV:%d    %04d    X%d", level, score, life);
 	UIship->draw();
 }
-bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
+bool SpaceRocks::GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
 	if (x1 + w1 >= x2 && x1 <= x2 + w2 &&
 		y1 + h1 >= y2 && y1 <= y2 + h2)
 	{
@@ -161,7 +161,7 @@ bool GameState::rectRect(float x1, float y1, float w1, float h1, float x2, float
 	}
 	return false;
 }
-void GameState::newLevel()
+void SpaceRocks::GameState::newLevel()
 {
 	level++;
 	//TODO - speed up randomization of 

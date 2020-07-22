@@ -4,6 +4,9 @@
 #include "InputComponent.h"
 #include <avr/pgmspace.h>
 
+namespace SpaceRocks
+{
+
 class PlayerInputComponent : public InputComponent
 {
 public:
@@ -29,6 +32,8 @@ private:
 		{ -0.17, -0.10}, { -0.14, -0.14},
 		{ -0.10, -0.17}, { -0.05, -0.19}
 	};
+};
+
 };
 
 #endif

@@ -1,10 +1,10 @@
 #include "Ship.h"
 
-constexpr int8_t Ship::shipTbl[6][24];
-constexpr uint Ship::invincibility_duration;
-constexpr float Ship::headingTable[24][2];
+constexpr int8_t SpaceRocks::Ship::shipTbl[6][24];
+constexpr uint SpaceRocks::Ship::invincibility_duration;
+constexpr float SpaceRocks::Ship::headingTable[24][2];
 
-Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) :
+SpaceRocks::Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) :
 		game(game), input(_input), canvas(canvas)
 {
 	heading = 0;
@@ -15,19 +15,19 @@ Ship::Ship(State *game, InputComponent *_input, Sprite *canvas) :
 	invincibility = 0;
 	invincibility_time = 0;
 }
-void Ship::start()
+void SpaceRocks::Ship::start()
 {
 	if(input != nullptr) input->start(*this);
 }
-void Ship::stop()
+void SpaceRocks::Ship::stop()
 {
 	if(input != nullptr) input->stop();
 }
-Ship::~Ship()
+SpaceRocks::Ship::~Ship()
 {
 	delete input;
 }
-void Ship::update(uint _time)
+void SpaceRocks::Ship::update(uint _time)
 {
 	if(input != nullptr) input->update(_time, *this);
 	bullets.update(canvas);
@@ -86,7 +86,7 @@ void Ship::update(uint _time)
 		shipY = 4;
 	}
 }
-void Ship::draw()
+void SpaceRocks::Ship::draw()
 {
 	
 	if(!invincibility || (invincibility && invincibility_time%250000 >= 100000))
@@ -103,11 +103,11 @@ void Ship::draw()
 	}
 	bullets.draw(canvas);
 }
-void Ship::shoot()
+void SpaceRocks::Ship::shoot()
 {
 	bullets.create(shipX1, shipY1, headingTable[heading][0]*20, headingTable[heading][1]*20, 30);
 }
-void Ship::destroyed()
+void SpaceRocks::Ship::destroyed()
 {
 	invincibility = 1;
 	invincibility_time = 0;
@@ -116,7 +116,7 @@ void Ship::destroyed()
 	velocityX = 0;
 	velocityY = 0;
 }
-ShipCoordinates Ship::getCoordinates()
+SpaceRocks::ShipCoordinates SpaceRocks::Ship::getCoordinates()
 {
 	ShipCoordinates coords;
 	coords.x1 = shipX0;

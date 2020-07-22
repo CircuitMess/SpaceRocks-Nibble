@@ -7,9 +7,9 @@
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 
-const char *TitleState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
-TitleState* TitleState::instance = nullptr;
-TitleState::TitleState(Sprite* sprite) : State(sprite)
+const char *SpaceRocks::TitleState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
+SpaceRocks::TitleState* SpaceRocks::TitleState::instance = nullptr;
+SpaceRocks::TitleState::TitleState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 	ship = new Ship(this, new DemoInputComponent(), display);
@@ -21,7 +21,7 @@ TitleState::TitleState(Sprite* sprite) : State(sprite)
 	blinkMicros = 0;
 }
 
-TitleState::~TitleState()
+SpaceRocks::TitleState::~TitleState()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_LEFT);
 	Input::getInstance()->removeBtnPressCallback(BTN_RIGHT);
@@ -29,7 +29,7 @@ TitleState::~TitleState()
 	delete ship;
 }
 
-void TitleState::start(SpaceRocks& _game)
+void SpaceRocks::TitleState::start(SpaceRocks& _game)
 {
 	game = &_game;
 	Input::getInstance()->setBtnPressCallback(BTN_LEFT, [](){
@@ -59,7 +59,7 @@ void TitleState::start(SpaceRocks& _game)
 	});
 	ship->start();
 }
-void TitleState::update(uint _time, SpaceRocks& game)
+void SpaceRocks::TitleState::update(uint _time, SpaceRocks& game)
 {
 	blinkMicros+=_time;
 	if(blinkMicros > 200000)
@@ -70,7 +70,7 @@ void TitleState::update(uint _time, SpaceRocks& game)
 	ship->update(_time);
 	ship->velocityX = 1;
 }
-void TitleState::draw()
+void SpaceRocks::TitleState::draw()
 {
 	display->drawIcon(spacerocks_backdrop, 0,0,128,128);
 	ship->draw();

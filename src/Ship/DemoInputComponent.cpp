@@ -2,11 +2,11 @@
 #include "Input/Input.h"
 #include "../../Nibble.hpp"
 #include "Ship.h"
-DemoInputComponent::DemoInputComponent() : rotateTimer(0) {}
-void DemoInputComponent::start(Ship& ship)
+SpaceRocks::DemoInputComponent::DemoInputComponent() : rotateTimer(0) {}
+void SpaceRocks::DemoInputComponent::start(Ship& ship)
 {
 }
-void DemoInputComponent::update(uint _time, Ship& ship)
+void SpaceRocks::DemoInputComponent::update(uint _time, Ship& ship)
 {
 	rotateTimer+=_time;
 	if(rotateTimer >= 300000){

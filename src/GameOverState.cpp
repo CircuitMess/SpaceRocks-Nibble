@@ -3,24 +3,24 @@
 #include <Input/Input.h>
 #include "SpaceRocks.h"
 
-GameOverState *GameOverState::instance = nullptr;
+SpaceRocks::GameOverState *SpaceRocks::GameOverState::instance = nullptr;
 
-GameOverState::GameOverState(Sprite* sprite) : State(sprite)
+SpaceRocks::GameOverState::GameOverState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 	linesDrawn = 0;
 }
-void GameOverState::start(SpaceRocks& _game)
+void SpaceRocks::GameOverState::start(SpaceRocks& _game)
 {
 	game = &_game;
 	
 }
-GameOverState::~GameOverState()
+SpaceRocks::GameOverState::~GameOverState()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_A);
 	Input::getInstance()->removeBtnPressCallback(BTN_B);
 }
-void GameOverState::draw()
+void SpaceRocks::GameOverState::draw()
 {
 	if(linesDrawn < 32)
 	{
@@ -36,12 +36,12 @@ void GameOverState::draw()
 		display->drawMonochromeIcon(spacerocks_gameover, 9, 14, 107, 98, 1, TFT_BLACK);
 	}
 }
-void GameOverState::drawBitmap(int16_t x, int16_t y, const byte *bitmap, uint16_t color, uint8_t scale) {
+void SpaceRocks::GameOverState::drawBitmap(int16_t x, int16_t y, const byte *bitmap, uint16_t color, uint8_t scale) {
 	uint16_t w = *(bitmap++);
 	uint16_t h = *(bitmap++);
 	display->drawMonochromeIcon(bitmap, x, y, w, h, scale, color);
 }
-void GameOverState::update(uint _time, SpaceRocks& game)
+void SpaceRocks::GameOverState::update(uint _time, SpaceRocks& game)
 {
 	if(linesDrawn < 32){
 		linesDrawn++;

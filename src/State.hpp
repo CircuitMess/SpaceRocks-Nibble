@@ -2,6 +2,10 @@
 #define SPACEROCKS_STATE_H
 #include <Display/Sprite.h>
 #include "../Nibble.hpp"
+
+namespace SpaceRocks
+{
+
 class SpaceRocks;
 class State
 {
@@ -16,6 +20,8 @@ public:
 protected:
 	Sprite* display;
 	SpaceRocks* game;
+};
+
 };
 
 

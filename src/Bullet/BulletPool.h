@@ -3,6 +3,10 @@
 #include <Arduino.h>
 #include <Display/Sprite.h>
 #include "Bullet.h"
+
+namespace SpaceRocks
+{
+
 class BulletPool
 {
 public:
@@ -13,5 +17,6 @@ public:
 	Bullet bullets[POOL_SIZE];
 };
 
+};
 
 #endif

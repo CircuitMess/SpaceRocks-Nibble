@@ -1,6 +1,9 @@
 #ifndef SPACEROCKS_BULLET_H
 #define SPACEROCKS_BULLET_H
 #include <Display/Sprite.h>
+
+namespace SpaceRocks
+{
 class Bullet
 {
 
@@ -18,6 +21,6 @@ private:
 	float xVel, yVel;
 };
 
-
+};
 
 #endif

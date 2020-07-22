@@ -12,6 +12,9 @@
 #include <UI/Image.h>
 #include <Display/Sprite.h>
 
+namespace SpaceRocks
+{
+
 class State;
 class SpaceRocks : public Context, public UpdateListener
 {
@@ -37,6 +40,6 @@ private:
 	Sprite *canvas;
 };
 
-
+};
 
 #endif

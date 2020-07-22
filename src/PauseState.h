@@ -4,6 +4,10 @@
 #include "State.hpp"
 #include "Ship/Ship.h"
 #include "Asteroid/AsteroidPool.h"
+
+namespace SpaceRocks
+{
+
 class PauseState : public State
 {
 public:
@@ -16,5 +20,6 @@ private:
 	static PauseState* instance;
 };
 
+};
 
 #endif

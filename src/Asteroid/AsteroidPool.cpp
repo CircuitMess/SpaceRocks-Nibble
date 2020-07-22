@@ -1,5 +1,5 @@
 #include "AsteroidPool.h"
-void AsteroidPool::create(float x, float y, float xVel, float yVel, AsteroidType _type, uint8_t look)
+void SpaceRocks::AsteroidPool::create(float x, float y, float xVel, float yVel, AsteroidType _type, uint8_t look)
 {
 	for(uint8_t i = 0; i < POOL_SIZE; i++)
 	{
@@ -10,21 +10,21 @@ void AsteroidPool::create(float x, float y, float xVel, float yVel, AsteroidType
 		}
 	}
 }
-void AsteroidPool::update(Sprite* canvas)
+void SpaceRocks::AsteroidPool::update(Sprite* canvas)
 {
 	for(uint8_t i = 0; i < POOL_SIZE; i++)
 	{
 		asteroids[i].update(canvas);
 	}
 }
-void AsteroidPool::draw(Sprite* canvas)
+void SpaceRocks::AsteroidPool::draw(Sprite* canvas)
 {
 	for(uint8_t i = 0; i < POOL_SIZE; i++)
 	{
 		asteroids[i].draw(canvas);
 	}
 }
-void AsteroidPool::broken(uint8_t index)
+void SpaceRocks::AsteroidPool::broken(uint8_t index)
 {
 	if(!asteroids[index].inUse()) return;
 	if(asteroids[index].type != AsteroidType::pebble)

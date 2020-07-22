@@ -19,5 +19,5 @@ const GameInfo SpaceRocksInfo {
 		"SpaceRocks",
 		"Shoot the asteroids to survive!",
 		spacerocks_icon,
-		[](Display& display) -> Context* { return new SpaceRocks(display); }
+		[](Display& display) -> Context* { return new SpaceRocks::SpaceRocks(display); }
 };

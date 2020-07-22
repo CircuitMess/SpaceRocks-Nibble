@@ -4,6 +4,10 @@
 #include "State.hpp"
 #include "Ship/Ship.h"
 #include "Asteroid/AsteroidPool.h"
+
+namespace SpaceRocks
+{
+
 class GameState : public State
 {
 public:
@@ -37,5 +41,6 @@ private:
 
 };
 
+};
 
 #endif

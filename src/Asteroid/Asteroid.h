@@ -4,6 +4,9 @@
 #include <Arduino.h>
 #include <Display/Sprite.h>
 
+namespace SpaceRocks
+{
+
 enum AsteroidType
 {
 	asteroid,
@@ -31,6 +34,8 @@ private:
 	static const uint16_t *bitmaps[3][3];
 	static constexpr uint8_t bitmapSizes[3] = {24, 16, 10};
 	static constexpr uint8_t hitboxWidth[3] = {17, 13, 9};
+};
+
 };
 
 #endif

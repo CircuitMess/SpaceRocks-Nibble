@@ -3,19 +3,19 @@
 #include "bitmaps/spacerocks_backdrop.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
-PauseState* PauseState::instance = nullptr;
-PauseState::PauseState(Sprite* sprite) : State(sprite)
+SpaceRocks::PauseState* SpaceRocks::PauseState::instance = nullptr;
+SpaceRocks::PauseState::PauseState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 }
 
-PauseState::~PauseState()
+SpaceRocks::PauseState::~PauseState()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_B);
 	Input::getInstance()->removeBtnPressCallback(BTN_A);
 }
 
-void PauseState::start(SpaceRocks& _game)
+void SpaceRocks::PauseState::start(SpaceRocks& _game)
 {
 	game = &_game;
 	Input::getInstance()->setBtnPressCallback(BTN_B, [](){
@@ -26,11 +26,11 @@ void PauseState::start(SpaceRocks& _game)
 	});
 	
 }
-void PauseState::update(uint _time, SpaceRocks& game)
+void SpaceRocks::PauseState::update(uint _time, SpaceRocks& game)
 {
 	
 }
-void PauseState::draw()
+void SpaceRocks::PauseState::draw()
 {
 	display->drawIcon(spacerocks_backdrop, 0, 0, 128, 128);
 	display->setCursor(32, display->height()/2 - 25);
