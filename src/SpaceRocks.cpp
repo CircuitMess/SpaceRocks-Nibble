@@ -9,7 +9,6 @@ SpaceRocks::SpaceRocks::SpaceRocks(Display& display) : Context(display), display
 {
 	randomSeed(micros()*millis());
 	state = new TitleState(canvas);
-	state->start(*this);
 }
 
 void SpaceRocks::SpaceRocks::draw()
@@ -24,10 +23,12 @@ void SpaceRocks::SpaceRocks::update(uint _time)
 }
 void SpaceRocks::SpaceRocks::start()
 {
+	state->start(*this);
 	UpdateManager::addListener(this);
 }
 void SpaceRocks::SpaceRocks::stop()
 {
+	UpdateManager::removeListener(this);
 	delete state;
 }
 void SpaceRocks::SpaceRocks::newGame()
