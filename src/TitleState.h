@@ -15,6 +15,7 @@ public:
 	void update(uint _time, SpaceRocks& game) override;
 	void draw() override;
 	void start(SpaceRocks& game) override;
+	void stop() override;
 
 private:
 	static const char *titleMenu[3] PROGMEM;

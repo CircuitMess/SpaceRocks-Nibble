@@ -9,13 +9,23 @@ SpaceRocks::GameOverState::GameOverState(Sprite* sprite) : State(sprite)
 {
 	instance = this;
 	linesDrawn = 0;
+	animationOver = 0;
 }
 void SpaceRocks::GameOverState::start(SpaceRocks& _game)
 {
 	game = &_game;
-	
+	Input::getInstance()->setBtnPressCallback(BTN_A, [](){
+		if(instance->animationOver){
+			instance->game->quitGame();
+		}
+	});
+	Input::getInstance()->setBtnPressCallback(BTN_B, [](){
+		if(instance->animationOver){
+			instance->game->quitGame();
+		}
+	});
 }
-SpaceRocks::GameOverState::~GameOverState()
+void SpaceRocks::GameOverState::stop()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_A);
 	Input::getInstance()->removeBtnPressCallback(BTN_B);
@@ -46,13 +56,7 @@ void SpaceRocks::GameOverState::update(uint _time, SpaceRocks& game)
 	if(linesDrawn < 32){
 		linesDrawn++;
 		if(linesDrawn >= 32){
-			Input::getInstance()->setBtnPressCallback(BTN_A, [](){
-				instance->game->quitGame();
-			});
-			Input::getInstance()->setBtnPressCallback(BTN_B, [](){
-				instance->game->quitGame();
-			});
+			animationOver = 1;
 		}
 	}
-	
 }

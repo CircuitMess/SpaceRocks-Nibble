@@ -23,12 +23,16 @@ SpaceRocks::TitleState::TitleState(Sprite* sprite) : State(sprite)
 
 SpaceRocks::TitleState::~TitleState()
 {
+	stop();
+	delete ship;
+}
+void SpaceRocks::TitleState::stop()
+{
 	Input::getInstance()->removeBtnPressCallback(BTN_LEFT);
 	Input::getInstance()->removeBtnPressCallback(BTN_RIGHT);
 	Input::getInstance()->removeBtnPressCallback(BTN_A);
-	delete ship;
+	ship->stop();
 }
-
 void SpaceRocks::TitleState::start(SpaceRocks& _game)
 {
 	game = &_game;
@@ -108,9 +112,4 @@ void SpaceRocks::TitleState::draw()
 		display->drawIcon(spacerocks_arrowLeft, 4, 112, 4, 7, 2, TFT_BLACK);
 		display->drawIcon(spacerocks_arrowRight, 116, 112, 4, 7, 2, TFT_BLACK);
 	}
-	// Serial.println("before draw");
-	// delay(4);
-	// display->drawMonochromeIcon(gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
-	// display->drawMonochromeIcon(gameover, 9, 14, 107, 98, 1, TFT_BLACK);
-	//111111
 }

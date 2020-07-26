@@ -9,7 +9,7 @@ SpaceRocks::PauseState::PauseState(Sprite* sprite) : State(sprite)
 	instance = this;
 }
 
-SpaceRocks::PauseState::~PauseState()
+void SpaceRocks::PauseState::stop()
 {
 	Input::getInstance()->removeBtnPressCallback(BTN_B);
 	Input::getInstance()->removeBtnPressCallback(BTN_A);

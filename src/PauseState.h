@@ -12,10 +12,10 @@ class PauseState : public State
 {
 public:
 	PauseState(Sprite* sprite);
-	~PauseState();
 	void update(uint _time, SpaceRocks& game) override;
 	void draw() override;
 	void start(SpaceRocks& game) override;
+	void stop() override;
 private:
 	static PauseState* instance;
 };

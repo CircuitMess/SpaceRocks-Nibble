@@ -1,2 +1,4 @@
 #include "State.hpp"
-SpaceRocks::State::~State(){}
+SpaceRocks::State::~State(){
+	stop();
+}

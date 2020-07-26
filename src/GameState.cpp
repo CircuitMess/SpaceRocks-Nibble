@@ -25,7 +25,7 @@ SpaceRocks::GameState::GameState(Sprite* sprite) : State(sprite)
 
 SpaceRocks::GameState::~GameState()
 {
-	Input::getInstance()->removeBtnPressCallback(BTN_B);
+	stop();
 	delete ship;
 }
 

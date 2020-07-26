@@ -28,7 +28,11 @@ void SpaceRocks::SpaceRocks::start()
 }
 void SpaceRocks::SpaceRocks::stop()
 {
+	state->stop();
 	UpdateManager::removeListener(this);
+}
+void SpaceRocks::SpaceRocks::pack()
+{
 	delete state;
 }
 void SpaceRocks::SpaceRocks::newGame()

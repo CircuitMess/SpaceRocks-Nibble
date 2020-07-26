@@ -24,7 +24,8 @@ public:
 	void start() override;
 	void update(uint _time) override;
 	void stop() override;
-
+	void pack() override;
+	
 	void newGame();
 	void enterHighscore();
 	void openHighscores();
