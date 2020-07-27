@@ -28,7 +28,6 @@ void SpaceRocks::PauseState::start(SpaceRocks& _game)
 }
 void SpaceRocks::PauseState::update(uint _time, SpaceRocks& game)
 {
-	
 }
 void SpaceRocks::PauseState::draw()
 {

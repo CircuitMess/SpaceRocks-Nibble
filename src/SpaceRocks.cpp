@@ -33,16 +33,19 @@ void SpaceRocks::SpaceRocks::stop()
 }
 void SpaceRocks::SpaceRocks::pack()
 {
+	state->stop();
 	delete state;
 }
 void SpaceRocks::SpaceRocks::newGame()
 {
+	state->stop();
 	delete state;
 	state = new GameState(canvas);
 	state->start(*this);
 }
 void SpaceRocks::SpaceRocks::gameOver()
 {
+	state->stop();
 	delete state;
 	state = new GameOverState(canvas);
 	state->start(*this);
@@ -60,12 +63,14 @@ void SpaceRocks::SpaceRocks::pauseGame()
 }
 void SpaceRocks::SpaceRocks::resumeGame()
 {
+	state->stop();
 	delete state;
 	state = pausedGameState;
 	state->start(*this);
 }
 void SpaceRocks::SpaceRocks::quitGame()
 {
+	state->stop();
 	delete state;
 	state = new TitleState(canvas);
 	state->start(*this);
