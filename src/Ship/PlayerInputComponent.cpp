@@ -2,6 +2,7 @@
 #include "Input/Input.h"
 #include "../../Nibble.hpp"
 #include "Ship.h"
+#include <Audio/Piezo.h>
 constexpr float SpaceRocks::PlayerInputComponent::headingTable[24][2];
 SpaceRocks::PlayerInputComponent* SpaceRocks::PlayerInputComponent::instance = nullptr;
 SpaceRocks::PlayerInputComponent::PlayerInputComponent()
@@ -22,7 +23,7 @@ void SpaceRocks::PlayerInputComponent::start(Ship& _ship)
 		instance->ship->velocityY += headingTable[instance->ship->heading][1];
 	});
 	Input::getInstance()->setBtnPressCallback(BTN_A, [](){
-		tone(BUZZ_PIN, 400, 50);
+		Piezo.tone(400, 50);
 		instance->ship->shoot();
 	});
 }

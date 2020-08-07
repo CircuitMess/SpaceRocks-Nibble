@@ -3,6 +3,7 @@
 #include "bitmaps/spacerocks_backdrop.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
+#include <Audio/Piezo.h>
 const char *SpaceRocks::GameState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
 SpaceRocks::GameState* SpaceRocks::GameState::instance = nullptr;
 SpaceRocks::GameState::GameState(Sprite* sprite) : State(sprite)
@@ -71,7 +72,7 @@ void SpaceRocks::GameState::update(uint _time, SpaceRocks& game)
 			if(rectRect(ship->bullets.bullets[j].x, ship->bullets.bullets[j].y, 2, 2,
 				asteroids.asteroids[i].x, asteroids.asteroids[i].y, asteroids.asteroids[i].getWidth(), asteroids.asteroids[i].getWidth()))
 			{
-				tone(BUZZ_PIN, 50, 50);
+				Piezo.tone(50, 50);
 				switch (asteroids.asteroids[i].type)
 				{
 				case AsteroidType::asteroid:
@@ -94,7 +95,7 @@ void SpaceRocks::GameState::update(uint _time, SpaceRocks& game)
 		ship->shipY > asteroids.asteroids[i].y && ship->shipY < asteroids.asteroids[i].y + asteroids.asteroids[i].getWidth() &&
 		!ship->invincibility)
 		{
-			tone(BUZZ_PIN, 50, 50);
+			Piezo.tone(50, 50);
 			asteroids.broken(i);
 			if(life > 0)
 			{
