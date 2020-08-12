@@ -35,9 +35,9 @@ public:
 	void resumeGame();
 	void returnToTitle();
 	uint score;
+	State *pausedGameState;
 private:
 	State *state;
-	State *pausedGameState;
 	Display *display;
 	Sprite *canvas;
 };

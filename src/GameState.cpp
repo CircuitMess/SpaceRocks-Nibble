@@ -28,6 +28,7 @@ SpaceRocks::GameState::~GameState()
 {
 	stop();
 	delete ship;
+	delete UIship;
 }
 
 void SpaceRocks::GameState::start(SpaceRocks& _game)

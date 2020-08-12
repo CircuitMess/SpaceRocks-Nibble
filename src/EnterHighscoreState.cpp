@@ -18,6 +18,12 @@ SpaceRocks::EnterHighscoreState::EnterHighscoreState(Sprite *sprite) : State(spr
 	name = new char[4];
 	strncpy(name, "AAA\0", sizeof(name));
 }
+SpaceRocks::EnterHighscoreState::~EnterHighscoreState()
+{
+	stop();
+	free(name);
+}
+
 void SpaceRocks::EnterHighscoreState::start(SpaceRocks& _game)
 {
 	game = &_game;

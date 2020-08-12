@@ -10,6 +10,7 @@ class EnterHighscoreState : public State
 {
 public:
 	EnterHighscoreState(Sprite *sprite);
+	~EnterHighscoreState();
 	void update(uint _time, SpaceRocks& game) override;
 	void draw() override;
 	void start(SpaceRocks& _game) override;

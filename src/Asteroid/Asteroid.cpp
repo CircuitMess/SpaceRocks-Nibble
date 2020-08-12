@@ -41,12 +41,8 @@ void SpaceRocks::Asteroid::update(Sprite* canvas)
 {
 	if(!inUse()) return;
 
-
-
 	//out-of-bounds handling
 	uint8_t asteroidWidth = 5 - uint8_t(type);
-	Serial.println(asteroidWidth);
-
 	if (int(x) < asteroidWidth){
 		x = canvas->width() - 3*asteroidWidth;
 	}
@@ -63,7 +59,6 @@ void SpaceRocks::Asteroid::update(Sprite* canvas)
 	x+=xVel;
 	y+=yVel;
 
-	Serial.printf("x: %.4f, y: %.4f\n", x, y);
 }
 void SpaceRocks::Asteroid::draw(Sprite* canvas)
 {
