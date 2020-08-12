@@ -16,12 +16,12 @@ void SpaceRocks::GameOverState::start(SpaceRocks& _game)
 	game = &_game;
 	Input::getInstance()->setBtnPressCallback(BTN_A, [](){
 		if(instance->animationOver){
-			instance->game->quitGame();
+			instance->game->enterHighscore();
 		}
 	});
 	Input::getInstance()->setBtnPressCallback(BTN_B, [](){
 		if(instance->animationOver){
-			instance->game->quitGame();
+			instance->game->enterHighscore();
 		}
 	});
 }

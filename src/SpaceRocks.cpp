@@ -4,6 +4,10 @@
 #include "GameState.h"
 #include "GameOverState.h"
 #include "PauseState.h"
+#include "EnterHighscoreState.h"
+#include "Highscore/Highscore.h"
+#include "ShowHighscoreState.h"
+#include "EraseHighscoreState.h"
 
 SpaceRocks::SpaceRocks::SpaceRocks(Display& display) : Context(display), display(&display), canvas(display.getBaseSprite()), score(0)
 {
@@ -23,6 +27,7 @@ void SpaceRocks::SpaceRocks::update(uint _time)
 }
 void SpaceRocks::SpaceRocks::start()
 {
+	Highscore.begin();
 	state->start(*this);
 	UpdateManager::addListener(this);
 }
@@ -52,7 +57,10 @@ void SpaceRocks::SpaceRocks::gameOver()
 }
 void SpaceRocks::SpaceRocks::enterHighscore()
 {
-
+	state->stop();
+	delete state;
+	state = new EnterHighscoreState(canvas);
+	state->start(*this);
 }
 void SpaceRocks::SpaceRocks::pauseGame()
 {
@@ -68,7 +76,7 @@ void SpaceRocks::SpaceRocks::resumeGame()
 	state = pausedGameState;
 	state->start(*this);
 }
-void SpaceRocks::SpaceRocks::quitGame()
+void SpaceRocks::SpaceRocks::returnToTitle()
 {
 	state->stop();
 	delete state;
@@ -77,5 +85,15 @@ void SpaceRocks::SpaceRocks::quitGame()
 }
 void SpaceRocks::SpaceRocks::openHighscores()
 {
-
+	state->stop();
+	delete state;
+	state = new ShowHighscoreState(canvas);
+	state->start(*this);
+}
+void SpaceRocks::SpaceRocks::deleteHighscores()
+{
+	state->stop();
+	delete state;
+	state = new EraseHighscoreState(canvas);
+	state->start(*this);
 }

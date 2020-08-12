@@ -29,10 +29,11 @@ public:
 	void newGame();
 	void enterHighscore();
 	void openHighscores();
+	void deleteHighscores();
 	void pauseGame();
 	void gameOver();
 	void resumeGame();
-	void quitGame();
+	void returnToTitle();
 	uint score;
 private:
 	State *state;
