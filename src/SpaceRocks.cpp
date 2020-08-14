@@ -27,6 +27,7 @@ void SpaceRocks::SpaceRocks::update(uint _time)
 }
 void SpaceRocks::SpaceRocks::start()
 {
+	runningContext = this;
 	Highscore.begin();
 	state->start(*this);
 	UpdateManager::addListener(this);
