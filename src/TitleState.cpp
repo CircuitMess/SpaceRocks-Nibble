@@ -6,6 +6,7 @@
 #include "bitmaps/spacerocks_arrowRight.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
+#include <Audio/Piezo.h>
 
 const char *SpaceRocks::TitleState::titleMenu[3] = {"Start", "Hiscores", "Quit"};
 SpaceRocks::TitleState* SpaceRocks::TitleState::instance = nullptr;
@@ -39,11 +40,15 @@ void SpaceRocks::TitleState::start(SpaceRocks& _game)
 	Input::getInstance()->setBtnPressCallback(BTN_LEFT, [](){
 		if(instance->titleCursor > 0){
 			instance->titleCursor--;
+			Piezo.tone(700, 40);
+
 		}
 	});
 	Input::getInstance()->setBtnPressCallback(BTN_RIGHT, [](){
 		if(instance->titleCursor < 2){
 			instance->titleCursor++;
+			Piezo.tone(700, 40);
+
 		}
 	});
 	Input::getInstance()->setBtnPressCallback(BTN_A, [](){
