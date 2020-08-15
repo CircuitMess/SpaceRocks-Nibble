@@ -43,17 +43,25 @@ void SpaceRocks::EraseHighscoreState::draw()
 	display->setCursor(4, 41);
 	display->printCenter("be reverted!");
 
+	display->setCursor(10, 102);
+	display->print("B:");
+	display->setCursor(48, 102);
+	display->print("Cancel");
+
+	display->setCursor(10, 81);
+	display->print("A:");
+
 	if (blinkState){
-		display->drawRect((display->width() - 60)/2, 102, 30*2, 9*2, TFT_RED);
+		display->drawRect((display->width() - 60)/2 + 5, 80, 30*2, 9*2, TFT_RED);
 		display->setTextColor(TFT_RED);
-		display->setCursor(28*2, 103);
-		display->printCenter("DELETE");
+		display->setCursor(46, 81);
+		display->print("DELETE");
 	}
 	else {
-		display->fillRect((display->width() - 60)/2, 102, 30*2, 9*2, TFT_RED);
+		display->fillRect((display->width() - 60)/2 + 5, 80, 30*2, 9*2, TFT_RED);
 		display->setTextColor(TFT_WHITE);
-		display->setCursor(28*2, 103);
-		display->printCenter("DELETE");
+		display->setCursor(46, 81);
+		display->print("DELETE");
 	}
 }
 
