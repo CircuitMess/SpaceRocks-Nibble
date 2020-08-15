@@ -2,6 +2,7 @@
 #include "bitmaps/spacerocks_gameover.hpp"
 #include <Input/Input.h>
 #include "SpaceRocks.h"
+#include "bitmaps/spacerocks_backdrop.hpp"
 
 SpaceRocks::GameOverState *SpaceRocks::GameOverState::instance = nullptr;
 
@@ -32,15 +33,13 @@ void SpaceRocks::GameOverState::stop()
 }
 void SpaceRocks::GameOverState::draw()
 {
-	if(linesDrawn < 32)
+	display->drawIcon(spacerocks_backdrop, 0, 0, 128, 128);
+	for (int i = 0; i <= linesDrawn*4; i+=4)
 	{
-		for (int i = 0; i <= linesDrawn*4; i+=4)
-		{
-			display->drawFastHLine(0, i, display->width(), TFT_DARKGREY);
-			display->drawFastHLine(0, i+1, display->width(), TFT_DARKGREY);
-		}
+		display->drawFastHLine(0, i, display->width(), TFT_DARKGREY);
+		display->drawFastHLine(0, i+1, display->width(), TFT_DARKGREY);
 	}
-	else
+	if(linesDrawn >= 32)
 	{
 		display->drawMonochromeIcon(spacerocks_gameover, 11, 16, 107, 98, 1, TFT_DARKGREY);
 		display->drawMonochromeIcon(spacerocks_gameover, 9, 14, 107, 98, 1, TFT_BLACK);
