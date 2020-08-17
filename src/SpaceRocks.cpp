@@ -46,6 +46,8 @@ void SpaceRocks::SpaceRocks::pack()
 		pausedGameState->stop();
 		delete pausedGameState;
 	}
+
+	exitingGame = true;
 }
 void SpaceRocks::SpaceRocks::newGame()
 {
