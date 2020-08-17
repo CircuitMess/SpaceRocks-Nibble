@@ -37,7 +37,7 @@ public:
 	void resumeGame();
 	void returnToTitle();
 	uint score;
-	State *pausedGameState;
+	State *pausedGameState = nullptr;
 private:
 	State *state;
 	Display *display;

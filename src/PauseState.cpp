@@ -20,6 +20,7 @@ void SpaceRocks::PauseState::start(SpaceRocks& _game)
 	game = &_game;
 	Input::getInstance()->setBtnPressCallback(BTN_B, [](){
 		delete instance->game->pausedGameState;
+		instance->game->pausedGameState = nullptr;
 		instance->game->returnToTitle();
 	});
 	Input::getInstance()->setBtnPressCallback(BTN_A, [](){

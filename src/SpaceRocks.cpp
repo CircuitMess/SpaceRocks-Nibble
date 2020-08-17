@@ -41,6 +41,11 @@ void SpaceRocks::SpaceRocks::pack()
 {
 	state->stop();
 	delete state;
+
+	if(pausedGameState != nullptr){
+		pausedGameState->stop();
+		delete pausedGameState;
+	}
 }
 void SpaceRocks::SpaceRocks::newGame()
 {
@@ -75,10 +80,16 @@ void SpaceRocks::SpaceRocks::resumeGame()
 	state->stop();
 	delete state;
 	state = pausedGameState;
+	pausedGameState = nullptr;
 	state->start(*this);
 }
 void SpaceRocks::SpaceRocks::returnToTitle()
 {
+	if(pausedGameState != nullptr){
+		delete pausedGameState;
+		pausedGameState = nullptr;
+	}
+
 	state->stop();
 	delete state;
 	state = new TitleState(canvas);
