@@ -19,7 +19,7 @@ void SpaceRocks::SpaceRocks::draw()
 {
 	state->draw();
 }
-void SpaceRocks::SpaceRocks::update(uint _time)
+void SpaceRocks::SpaceRocks::loop(uint _time)
 {
 	state->update(_time, *this);
 	draw();
@@ -30,12 +30,12 @@ void SpaceRocks::SpaceRocks::start()
 	runningContext = this;
 	Highscore.begin();
 	state->start(*this);
-	UpdateManager::addListener(this);
+	LoopManager::addListener(this);
 }
 void SpaceRocks::SpaceRocks::stop()
 {
 	state->stop();
-	UpdateManager::removeListener(this);
+	LoopManager::removeListener(this);
 }
 void SpaceRocks::SpaceRocks::pack()
 {

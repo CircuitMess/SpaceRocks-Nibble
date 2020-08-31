@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <CircuitOS.h>
 #include <Input/Input.h>
-#include <Update/UpdateManager.h>
+#include <Loop/LoopManager.h>
 #include <gpio.h>
 #include <avr/pgmspace.h>
 #include <Support/Context.h>
@@ -19,13 +19,13 @@ namespace SpaceRocks
 {
 
 class State;
-class SpaceRocks : public Context, public UpdateListener
+class SpaceRocks : public Context, public LoopListener
 {
 public:
 	SpaceRocks(Display& Display);
 	void draw() override;
 	void start() override;
-	void update(uint _time) override;
+	void loop(uint _time) override;
 	void stop() override;
 	void pack() override;
 	
